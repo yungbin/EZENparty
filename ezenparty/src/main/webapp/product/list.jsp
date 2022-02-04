@@ -8,8 +8,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="pageNav" tagdir="/WEB-INF/tags" %>
 <%
-//페이지 정보 받기
+//페이지 정보 받기 //페이지 정보 받기
 PageObject pageObject = PageObject.getInstance(request);
+
 
 // 서비스 받기
 ProductListService service = new ProductListService();
