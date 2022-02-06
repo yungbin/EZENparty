@@ -11,6 +11,7 @@
 		<pattern>/product/*</pattern>
 		<pattern>/member/*</pattern>
 		<pattern>/grade/*</pattern>
+		<pattern>/qna/*</pattern>
 	</decorator>
 	
 <!-- 	<decorator name="admin" page="admin_decorator.jsp"> -->

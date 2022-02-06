@@ -86,7 +86,8 @@ article {
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 						<li><a href="/notice/list.jsp">공지사항</a></li>
-						<li><a href="/board/list.jsp">게시판</a></li>
+						<li><a href="/product/list.jsp">상품 리스트</a></li>
+						<li><a href="/qna/list.jsp">문의하기</a></li>
 					</ul>
 				</div>
 			</div>

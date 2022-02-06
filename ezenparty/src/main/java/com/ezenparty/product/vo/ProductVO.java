@@ -3,9 +3,11 @@ package com.ezenparty.product.vo;
 public class ProductVO {
 	
 	private long pno;
-	private String pname, price, color;
+	private String pname;
+	private long price;
+	private String color;
 	private int unit;
-	private String image, title, content, writeDate;
+	private String image, content, writeDate;
 	private long hit;
 	
 	public long getPno() {
@@ -20,10 +22,10 @@ public class ProductVO {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-	public String getPrice() {
+	public long getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 	public String getColor() {
@@ -43,12 +45,6 @@ public class ProductVO {
 	}
 	public void setImage(String image) {
 		this.image = image;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public String getContent() {
 		return content;
@@ -71,8 +67,7 @@ public class ProductVO {
 	
 	@Override
 	public String toString() {
-		return "ProductVO [pno=" + pno + ", pname=" + pname + ", price=" + price + ", color=" + color + ", unit=" + unit
-				+ ", image=" + image + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
-				+ ", hit=" + hit + "]";
+		return "ProductVO [pno=" + pno + ", price=" + price + ", pname=" + pname + ", color=" + color + ", unit=" + unit
+				+ ", image=" + image + ", content=" + content + ", writeDate=" + writeDate + ", hit=" + hit + "]";
 	}
 }
