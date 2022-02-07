@@ -292,5 +292,40 @@ public class ProductDAO {
 
 		return result;
 	}// end of update
+
+	public int delete(long pno) throws Exception{
+		int result = 0;
+
+		try {
+
+			// 1. 2.
+			con = DB.getConnection();
+			// 3.
+			String sql = " delete from product where pno = ? ";
+			System.out.println("ProductDAO.update().sql - " + sql);
+			// 4.
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, pno);
+			// 5.
+			result = pstmt.executeUpdate();
+			// 6. 작동 확인용
+			System.out.println((result > 0) ? "상품 삭제 완료" : "상품 삭제 실패");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				// 7.
+				DB.close(con, pstmt);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
 	
 }// class of end

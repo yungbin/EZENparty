@@ -79,7 +79,7 @@ request.setAttribute("vo", vo);
 		<div class="row">
 			<div class="col-sm-8" id="adminBtn">
 				<a href="updateForm.jsp?pno=${vo.pno }" class="btn btn-default btn-lg">글 수정</a>
-				<a href="delete.jsp?no=${vo.pno }" class="btn btn-default btn-lg">글 삭제</a>
+				<a href="delete.jsp?pno=${vo.pno }&oldImage=${vo.image}&oldContent=${vo.content}" class="btn btn-default btn-lg">글 삭제</a>
 			</div>
 			<div class="col-sm-4" id="publicBtn">
 				<button class="btn btn-default btn-lg">장바구니</button>
