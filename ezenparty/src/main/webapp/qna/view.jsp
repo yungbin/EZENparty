@@ -60,8 +60,8 @@ $(function(){
 		<td>${vo.content }</td>
 	</tr>
 	<tr>
-		<th>이름 (아이디)</th>
-		<td>${vo.name } (${vo.id })</td>
+		<th>아이디</th>
+		<td>${vo.id }</td>
 	</tr>
 	<tr>
 		<th>작성일</th>

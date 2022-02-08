@@ -20,11 +20,11 @@ request.setAttribute("vo", vo);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>질문답변 글수정</title>
+<title>문의 글수정</title>
 </head>
 <body>
 	<div class="container">
-		<h2>질문답변 글수정</h2>
+		<h2>문의 글수정</h2>
 		<form action="answer.jsp" method="post" class="form-horizontal">
 		<input type="hidden" name="no" value="${vo.no }">
 		<input type="hidden" name="refNo" value="${vo.refNo }">

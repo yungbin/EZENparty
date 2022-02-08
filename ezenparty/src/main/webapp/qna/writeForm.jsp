@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>질문하기 폼</title>
+<title>문의 글쓰기</title>
 <script type="text/javascript" src="/js/formUtil.js"></script>
 <script type="text/javascript">
 

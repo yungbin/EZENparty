@@ -75,8 +75,8 @@ $(function(){
 			</c:if>
 			${vo.title }
 		</td>
-		<td>${vo.name }(${vo.id })</td>
-		<td>${vo.writeDate }</td>d>
+		<td>${vo.id }</td>
+		<td>${vo.writeDate }</td>
 	</tr>
 	</c:forEach>
 	<tr>
