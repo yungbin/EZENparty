@@ -43,6 +43,12 @@
 						maxlength="10" />
 				</div>
 			</div>
+			<select name="pkind" id="pkind">
+				<option value="colorB">기본/색깔풍선</option>
+				<option value="numberB">숫자풍선</option>
+				<option value="charB">캐릭터풍선</option>
+				<option value="smileB">스마일풍선</option>
+			</select>
 			<div class="form-group">
 				<label for="content" class="control-label col-sm-2">내용 이미지</label>
 				<div class="col-sm-10">

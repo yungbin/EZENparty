@@ -1,3 +1,5 @@
+<%@page import="com.ezenparty.notice.vo.NoticeVO"%>
+<%@page import="com.ezenparty.notice.service.NoticeViewService"%>
 <%@page import="com.ezenparty.product.vo.ProductVO"%>
 <%@page import="com.ezenparty.product.service.ProductViewService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,12 +9,8 @@
 String strPno = request.getParameter("pno");
 long pno = Long.parseLong(strPno);
 
-// 조회수 증가 정보(inc)를 받아서 세팅한다.
-String strInc = request.getParameter("inc");
-int inc = Integer.parseInt(strInc);
-
 ProductViewService service = new ProductViewService();
-ProductVO vo = service.service(pno, inc);
+ProductVO vo = service.service(pno);
 
 request.setAttribute("vo", vo);
 %>
@@ -66,12 +64,10 @@ request.setAttribute("vo", vo);
 					<span class="spanDataRow">${vo.price }</span></li>
 					<li class="list-group-item"><strong class="strHead">색상</strong>
 					<span class="spanDataRow">${vo.color }</span></li>
-					<li class="list-group-item"><strong class="strHead">수량</strong>
-					<span class="spanDataRow">${vo.unit }</span></li>
 					<li class="list-group-item"><strong class="strHead">등록일</strong>
 					<span class="spanDataRow">${vo.writeDate }</span></li>
-					<li class="list-group-item"><strong class="strHead">조회수</strong>
-					<span class="spanDataRow">${vo.hit }</span></li>
+					<li class="list-group-item"><strong class="strHead">종류</strong>
+					<span class="spanDataRow">${vo.pkind }</span></li>
 				</ul>
 			</div>
 		</div>

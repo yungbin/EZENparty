@@ -11,7 +11,7 @@ long no = Long.parseLong(strNo);
 
 // DB 글번호에 맞는 데이터 가져오기
 QnaViewService service = new QnaViewService();
-QnaVO vo = service.service(no,0);
+QnaVO vo = service.service(no);
 System.out.println("vo = " + vo);
 
 // EL이나 JSTL에서 데이터를 사용하기 위해서 기본 저장 객체에 저장해 둔다.

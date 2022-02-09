@@ -22,9 +22,7 @@ long pno = Long.parseLong(strPno);
 System.out.println("[update] pno >> " + pno);
 
 String pname = multi.getParameter("pname");
-String strPrice = multi.getParameter("price");
-long price = Long.parseLong(strPrice);
-
+String price = multi.getParameter("price");
 String color = multi.getParameter("color");
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);

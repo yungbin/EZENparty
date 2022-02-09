@@ -15,8 +15,7 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request, realPath, size, "utf-8", new DefaultFileRenamePolicy());
 
 String pname = multi.getParameter("pname");
-String strPrice = multi.getParameter("price");
-long price = Long.parseLong(strPrice); 
+String price = multi.getParameter("price");
 String color = multi.getParameter("color");
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);

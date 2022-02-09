@@ -1,11 +1,15 @@
 <!-- sitemesh 사용을 위한 설정 파일 -->
 <!-- 작성자 : 이영환 -->
 <!-- 작성일 : 2020-06-30 -->
+<%@page import="com.ezenparty.member.vo.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+LoginVO loginVO = (LoginVO)session.getAttribute("login");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +92,26 @@ article {
 						<li><a href="/notice/list.jsp">공지사항</a></li>
 						<li><a href="/product/list.jsp">상품 리스트</a></li>
 						<li><a href="/qna/list.jsp">문의하기</a></li>
+						<% if(loginVO != null && loginVO.getGradeNo() == 9){ %>
+							<li><a href="/member/list.jsp">회원관리</a></li>
+							<li><a href="/grade/list.jsp">등급관리</a></li>
+						<%} %>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<%
+						if (loginVO == null) {
+						%>
+						<li><a href="/member/writeForm.jsp">회원가입</a></li>
+						<li><a href="/member/loginForm.jsp">로그인</a></li>
+						<%
+						} else {
+						%>
+						<li><a href="/member/view.jsp"> <%=loginVO.getName()%>(<%=loginVO.getGradeName()%>)
+						</a></li>
+						<li><a href="/member/logout.jsp">로그아웃</a></li>
+						<%
+						}
+						%>
 					</ul>
 				</div>
 			</div>

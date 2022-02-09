@@ -49,7 +49,7 @@ request.setAttribute("pageObject", pageObject);
 <!-- 페이지 정보 -->
 <head>
 <meta charset="UTF-8">
-<title>공지사항&이벤트</title>
+<title>공지사항&#38;이벤트</title>
 <style type="text/css">
 th{
 	background: black;
@@ -67,7 +67,7 @@ th{
 <!-- 데이터 표시부분 -->
 <body>
 <div class="container">
-	<h2>공지사항&이벤트</h2>
+	<h2>공지사항&#38;이벤트</h2>
 	<a href="list.jsp?pt=all" class="btn btn-default" style='${(pt == "all")?style:""}'>전체글</a>
 	<a href="list.jsp?pt=notice" class="btn btn-default" style='${(pt == "notice")?style:""}'>공지사항</a>
 	<a href="list.jsp?pt=event" class="btn btn-default" style='${(pt == "event")?style:""}'>이벤트</a>

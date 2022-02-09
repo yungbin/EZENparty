@@ -5,6 +5,126 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+<style type="text/css">
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+
+}
+
+body {
+  background-image:#34495e;
+}
+
+.joinForm {
+  position:absolute;
+  width:400px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+
+.joinForm h2 {
+  text-align: center;
+  margin: 30px;
+}
+
+.textForm {
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+
+.id {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.pw {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.name {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.email {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.nickname {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.cellphoneNo {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.btn {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+
+.btn:hover {
+  background-position: right;
+}
+</style>
 <script type="text/javascript" src="/js/formUtil.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -16,24 +136,24 @@ $(function(){
 	$("#pwMsg").css("color","red");
 	$("#pw2Msg").css("color","red");
 	
-	// 비밀번호 길이가 4자 이상인지 확인해서 메시지에 작성하는 이벤트
+	// 비밀번호 길이가 8자 이상인지 확인해서 메시지에 작성하는 이벤트
 	$("#pw").keyup(function(){
 		// 입력한 데이터의 길이
 		var len = $(this).val().length;
-		if(len < 4) {
-			$("#pwMsg").text("4자 이상을 입력하셔야 합니다.");
+		if(len < 8) {
+			$("#pwMsg").text("8자 이상을 입력하셔야 합니다.");
 			$("#pwMsg").css("color","red");
 		} else{
 			$("#pwMsg").text("적당한 길이의 비밀번호 입니다.");
 			$("#pwMsg").css("color","green");
 		}
 	})
-	// 비밀번호확인 길이가 4자 이상인지 확인해서 이상이면 비밀번호와 비밀번호 확인이 같은지를 보여주는 메시지에 작성하는 이벤트
+	// 비밀번호확인 길이가 8자 이상인지 확인해서 이상이면 비밀번호와 비밀번호 확인이 같은지를 보여주는 메시지에 작성하는 이벤트
 	$("#pw2").keyup(function(){
 		// 입력한 데이터의 길이
 		var len = $(this).val().length;
-		if(len < 4) {
-			$("#pw2Msg").text("4자 이상을 입력하셔야 합니다.");
+		if(len < 8) {
+			$("#pw2Msg").text("8자 이상을 입력하셔야 합니다.");
 			$("#pw2Msg").css("color","red");
 		} else{
 			if($(this).val() == $("#pw").val()){
@@ -69,74 +189,63 @@ $(function(){
 </script>
 </head>
 <body>
-<h2>회원 가입 폼</h2>
+<div class="container">
+<h2 class="text-center">회원 가입 폼</h2>
 <!-- 사용자에게 데이터를 입력하도록 한다. : form, input, select, textarea tag -->
 <!-- 입력 데이터 : 아이디, 비밀번호, 비밀번호확인, 이름, 성별, 생년월일, 연락처, 이메일, 사진 -->
 <!-- action : 데이터를 받을 URL, method : get - URL 뒤에 데이터, post - 데이터를 따로 보이지 않게 데이터 -->
-<form action="write.jsp" method="post" enctype="multipart/form-data" id="writeForm">
-	<table>
-		<tr>
-			<th>아이디</th>
+<form action="write.jsp" method="post" class="joinForm" enctype="multipart/form-data" id="writeForm">
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td><input type="text" name="id" maxlength="20"/></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력
-			 type="password" : 입력한 문자를 대체문자로 보여준다. 동그라미로 보여준다.-->
-			<td>
-				<input type="password" name="pw" maxlength="20"
-					id="pw"/>
-				<span id="pwMsg">4자 이상을 입력하셔야 합니다.</span>
-			</td>
-		</tr>
-		<tr>
-			<th>비밀번호 확인</th>
+			<input type="text" name="id" maxlength="20" id="id" class="form-control"  placeholder="아이디"/>
+			<span>예)abc156</span>
+		</div>
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td>
-				<input type="password" name="pw2" maxlength="20"
-					id="pw2"/>
-				<span id="pw2Msg">4자 이상을 입력하셔야 합니다.</span>
-			</td>
-		</tr>
-		<tr>
-			<th>이름</th>
+			<input type="password" name="pw" maxlength="20" id="pw" class="form-control" placeholder="비밀번호"/>
+				<span id="pwMsg">8자 이상을 입력하셔야 합니다.</span>
+		</div>
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td><input type="text" name="name" maxlength="10"/></td>
-		</tr>
-		<tr>
-			<th>생년월일</th>
-			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력
-			 xxxx-xx-xx placeholder : 입력 형식 예를 데이터가 입력이 안 되었을 때 백그라운드로 표시-->
-			<td><input type="text" name="birth" maxlength="10" placeholder="예)1900-01-01"
-				id="birth"/></td>
-		</tr>
-		<tr>
-			<th>연락처</th>
+			<input type="password" name="pw2" maxlength="20" id="pw2" class="form-control" placeholder="비밀번호 확인"/>
+				<span id="pwMsg">8자 이상을 입력하셔야 합니다.</span>
+		</div>
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td><input type="text" name="tel" maxlength="13" placeholder="예)010-1111-2222"
-				id="tel"/></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
+			<input type="text" name="name" maxlength="10" id="name" class="form-control" placeholder="이름"/>
+			<span>예)홍길동</span>
+			</div>
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td><input type="text" name="email" maxlength="50" placeholder="예)test@naver.com"
-				id="email"/></td>
-		</tr>
-		<tr>
-			<th>사진</th>
+			<input type="text" name="birth" maxlength="20" id="birth"  placeholder="생년월일" class="form-control"/>
+			<span>예)1900-01-01</span>
+		</div>
+		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<td><input type="file" name="photo" maxlength="10"/></td>
-		</tr>
-		<tr>
-			<td colspan="2">
+			<input type="text" name="tel" maxlength="13" id="tel" placeholder="연락처" class="form-control"/>
+			<span>예)010-1111-2222</span>
+		</div>
+		<div class="textForm">
+			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
+			<input type="text" name="address" maxlength="250" id="address"  placeholder="주소" class="form-control"/>
+			<span>예)경기도 의정부시 12-1(도로명주소)</span>
+		</div>
+		<div class="textForm">
+			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
+			<input type="text" name="email" maxlength="50" id="email"  placeholder="이메일" class="form-control"/>
+			<span>예)test@naver.com</span>
+		</div>
+		<div class="textForm">
+			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
+			<input type="text" name="photo" maxlength="50" id="photo" placeholder="프로필 선택(필수X)" class="form-control" disabled/><input type="file"></input>
+			</div>
+			<div class="textForm">
 				<!-- button이 form tag 안에 있으면 데이터를 전달하는 동작을 하게 된다. -->
-				<button type="submit">회원가입</button>
-				<button type="reset">다시입력</button>
-				<button type="button" onclick="history.back()">취소</button>
-			</td>
-		</tr>
-	</table>
+				<button type="submit" class="btn btn-default">회원가입</button>
+				<button type="reset" class="btn btn-default">다시입력</button>
+				<button type="button" onclick="history.back()" class="btn btn-default">취소</button>
+			</div>
 </form>
+</div>
 </body>
 </html>

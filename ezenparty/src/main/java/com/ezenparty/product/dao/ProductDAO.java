@@ -28,7 +28,7 @@ public class ProductDAO {
 			
 			// 3.
 			String sql = "select pno, pname, "
-					+ " price, image "
+					+ " to_char(price, 'fm999,999,999,999,999,990') price, image "
 					+ " from product order by pno desc ";
 			// 3-1. 순서번호
 			sql = "select rownum rnum, pno, pname, price, image from( " + sql + ")";
@@ -52,7 +52,7 @@ public class ProductDAO {
 					ProductVO vo = new ProductVO();
 					
 					vo.setPno(rs.getLong("pno"));
-					vo.setPrice(rs.getLong("price"));
+					vo.setPrice(rs.getString("price"));
 					vo.setPname(rs.getString("pname"));
 					vo.setImage(rs.getString("image"));
 					
@@ -115,41 +115,6 @@ public class ProductDAO {
 		return totalRow;
 	}// getTotalRow of end
 
-	// 3. 조회수 증가 메서드
-	public void increase(long pno) throws Exception{
-		
-		try {
-			
-			// 1. 2.
-			con = DB.getConnection();
-			// 3.
-			String sql = "update product set hit = hit + 1 where pno = ?";
-			System.out.println("ProductDAO.increase().sql - " + sql);
-			// 4.
-			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, pno);
-			
-			// 5.
-			int result = pstmt.executeUpdate();
-			// 6. 작동 확인용
-			System.out.println((result > 0)?"조회수 증가완료":"조회수 증가 실패");
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}finally {
-			try {
-				// 7.
-				DB.close(con, pstmt);
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
-		
-	}// end of increase()
-
 	// 4. 상품 정보 보기
 	public ProductVO view(long pno) throws Exception{
 		ProductVO vo = null;
@@ -160,9 +125,9 @@ public class ProductDAO {
 			con = DB.getConnection();
 
 			// 3.
-			String sql = "select pno, pname, price, "
-					+ " color, unit, image, content, "
-					+ "to_char(writeDate, 'yyyy-mm-dd') writeDate, hit "
+			String sql = "select pno, pname, "
+					+ " to_char(price, 'fm999,999,999,999,999,990') price, color, unit, image, content, "
+					+ " to_char(writeDate, 'yyyy-mm-dd') writeDate, pkind"
 					+ " from product where pno = ?";
 			// sql 확인용
 			System.out.println("ProductDAO.list() sql >> " + sql);
@@ -179,13 +144,13 @@ public class ProductDAO {
 
 				vo.setPno(rs.getLong("pno"));
 				vo.setPname(rs.getString("pname"));
-				vo.setPrice(rs.getLong("price"));
+				vo.setPrice(rs.getString("price"));
 				vo.setColor(rs.getString("color"));
 				vo.setUnit(rs.getInt("unit"));
 				vo.setImage(rs.getString("image"));
 				vo.setContent(rs.getString("content"));
 				vo.setWriteDate(rs.getString("writeDate"));
-				vo.setHit(rs.getLong("hit"));
+				vo.setPkind(rs.getString("pkind"));
 			}
 
 		} catch (Exception e) {
@@ -222,7 +187,7 @@ public class ProductDAO {
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
-			pstmt.setLong(2, vo.getPrice());
+			pstmt.setString(2, vo.getPrice());
 			pstmt.setString(3, vo.getColor());
 			pstmt.setInt(4, vo.getUnit());
 			pstmt.setString(5, vo.getImage());
@@ -265,7 +230,7 @@ public class ProductDAO {
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
-			pstmt.setLong(2, vo.getPrice());
+			pstmt.setString(2, vo.getPrice());
 			pstmt.setString(3, vo.getColor());
 			pstmt.setInt(4, vo.getUnit());
 			pstmt.setString(5, vo.getImage());

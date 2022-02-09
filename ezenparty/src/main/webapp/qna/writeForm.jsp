@@ -49,7 +49,7 @@ $(function(){
 </head>
 <body>
 <div class="container">
-<h2 class="text-center">질문하기 폼</h2>
+<h2 class="text-center">문의하기 폼</h2>
 <!-- 사용자에게 데이터를 입력하도록 한다. : form, input, select, textarea tag -->
 <!-- action : 데이터를 받을 URL, method : get - URL 뒤에 데이터, post - 데이터를 따로 보이지 않게 데이터 -->
 <!-- Bootstrap - class="form-horizontal" : 한줄에 라벨과 입력을 같이 둔다.

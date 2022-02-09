@@ -3,7 +3,7 @@ package com.ezenparty.notice.vo;
 public class NoticeVO {
 
 	private long no;
-	private String title, content, group, writeDate, startDate, endDate;
+	private String title, content, kind, writeDate, startDate, endDate;
 
 	public long getNo() {
 		return no;
@@ -29,12 +29,12 @@ public class NoticeVO {
 		this.content = content;
 	}
 
-	public String getGroup() {
-		return group;
+	public String getKind() {
+		return kind;
 	}
 
-	public void setGroup(String group) {
-		this.group = group;
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 
 	public String getWriteDate() {
@@ -63,7 +63,7 @@ public class NoticeVO {
 
 	@Override
 	public String toString() {
-		return "NoticeVO [no=" + no + ", title=" + title + ", content=" + content + ", group=" + group + ", writeDate="
+		return "NoticeVO [no=" + no + ", title=" + title + ", content=" + content + ", kind=" + kind + ", writeDate="
 				+ writeDate + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 }

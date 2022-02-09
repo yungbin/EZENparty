@@ -35,10 +35,10 @@ public class NoticeDAO {
 
 			switch (pageObject.getPeriod()) {
 			case "notice":
-				sql += " WHERE class = 1 ";
+				sql += " WHERE kind = 1 ";
 				break;
 			case "event":
-				sql += " WHERE class = 2 ";
+				sql += " WHERE kind = 2 ";
 				break;
 			case "all":
 				sql += " ";
@@ -91,6 +91,7 @@ public class NoticeDAO {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("list" + list);
 		return list;
 	}
 
@@ -107,10 +108,10 @@ public class NoticeDAO {
 			// 조건에 맞는 쿼리 추가. -> 동적 쿼리 : 넘어오는 pt 변수의 값으로 정한다.
 			switch (pageObject.getPeriod()) {
 			case "notice":
-				sql += " WHERE class = 1 ";
+				sql += " WHERE kind = 1 ";
 				break;
 			case "event":
-				sql += " WHERE class = 2 ";
+				sql += " WHERE kind = 2 ";
 				break;
 			case "all":
 				sql += " ";
@@ -193,14 +194,15 @@ public class NoticeDAO {
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
-			String sql = " INSERT INTO notice(no, title, content, startDate, endDate) "
-					+ " VALUES(notice_seq.NEXTVAL, ?, ?, ?, ?) ";
+			String sql = " INSERT INTO notice(no, title, content, kind, startDate, endDate) "
+					+ " VALUES(notice_seq.NEXTVAL, ?, ?, ?, ?, ?) ";
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContent());
-			pstmt.setString(3, vo.getStartDate());
-			pstmt.setString(4, vo.getEndDate());
+			pstmt.setString(3, vo.getKind());
+			pstmt.setString(4, vo.getStartDate());
+			pstmt.setString(5, vo.getEndDate());
 			// 5.
 			result = pstmt.executeUpdate();
 			// 6.

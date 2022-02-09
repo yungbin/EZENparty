@@ -36,9 +36,7 @@ $(function(){
 	$(".dataRow").click(function(){
 		var pno = $(this).find(".pno").text();
 
-		location = "view.jsp?pno=" + pno + "&inc=1"
-		+ "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
-		
+		location = "view.jsp?pno=" + pno + "&page=${pageObject.page}&perPageNum=${pageObject.perPageNum}";
 	});
 });
 </script>
@@ -55,8 +53,8 @@ $(function(){
 					<img src="${vo.image }" alt="Photo List"
 						style="width: 100%; height: 300px;">
 					<div class="caption">
-						<p>${vo.pname }</p>
-						${vo.price }
+						<p style="font-size: 20px;">${vo.pname }</p>
+						<b>${vo.price }</b>
 					</div>
 				</div>
 			</div>
@@ -68,7 +66,6 @@ $(function(){
 </c:if>
 		</c:forEach>
 	</div>
-	
 <div>
 	<pageNav:pageNav listURI="list.jsp" pageObject="${pageObject }" />
 </div>

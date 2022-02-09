@@ -9,7 +9,7 @@ long pno = Long.parseLong(strPno);
 System.out.println("[updateForm] pno >> " + pno);
 
 ProductViewService service = new ProductViewService();
-ProductVO vo = service.service(pno, 0);
+ProductVO vo = service.service(pno);
 
 request.setAttribute("vo", vo);
 %>

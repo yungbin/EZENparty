@@ -200,46 +200,6 @@ public class QnaDAO {
 		return vo;
 	}// end of view()
 	
-	// 2-1. 조회수 1 증가
-	public void increase(long no) throws Exception{
-
-		// 실행 위치와 전달 데이터 확인
-		System.out.println("QnaDAO.increase().no>> " + no);
-		
-		int result = 0;
-		
-		// 데이터 채우기 - DB에서 가져오므로 예외처리 필수
-		try { // 정상 처리
-				// 1. 드라이버 확인 --> DB.java에서 static 초기화 블록으로 해결
-				// 2. 연결
-			con = DB.getConnection();
-			// 3. 실행할 sql 문 작성
-			// 3-1. 원본 데이터 가져오기
-			String sql = " UPDATE qna SET hit = hit + 1 WHERE no = ? ";
-			// 4. 실행 객체 & 데이터 세팅
-			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, no);
-			// 5. 실행
-			// update가 됐으면 1, 안됐으면 0 -> 글 번호에 따른 데이터가 없는 경우.
-			result = pstmt.executeUpdate();
-			// 6. 데이터 담기
-			System.out.println("QnaDAO.increase() - 조회수 증가 result : " + result);
-		} catch (Exception e) { // 예외처리
-			// TODO: handle exception
-			// 개발자를 위해서 오류 경로 추적 출력
-			e.printStackTrace();
-		} finally { // 반드시 처리
-			try { // 정상 처리
-					// 7. 객체 닫기
-				DB.close(con, pstmt);
-			} catch (Exception e) { // 예외처리
-				// TODO: handle exception
-				// 개발자를 위해서 오류 경로 추적 출력
-				e.printStackTrace();
-			}
-		} // end of try
-	}
-	
 	// 3. 질문하기
 	public int write(QnaVO vo) throws Exception{
 		// 실행 위치와 전달 데이터 확인

@@ -11,6 +11,13 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 
+	<servlet>
+		<description>서버의 초기화 실행 서블릿</description>
+		<servlet-name>init</servlet-name>
+		<servlet-class>com.ezenparty.util.init.Init</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
 	<filter>
 		<description>사이트에 레이아웃을 잡는 필터 처리</description>
 		<filter-name>sitemesh</filter-name>
@@ -20,6 +27,17 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
+
+	<filter>
+		<description>권한 처리 필터</description>
+		<filter-name>authority</filter-name>
+		<filter-class>com.ezenparty.util.filter.AuthorityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authority</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
   
+  	
   
 </web-app>
