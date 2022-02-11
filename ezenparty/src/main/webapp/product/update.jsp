@@ -22,10 +22,13 @@ long pno = Long.parseLong(strPno);
 System.out.println("[update] pno >> " + pno);
 
 String pname = multi.getParameter("pname");
-String price = multi.getParameter("price");
+String strPrice = multi.getParameter("price");
+long price = Long.parseLong(strPrice);
+
 String color = multi.getParameter("color");
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);
+String pkind = multi.getParameter("pkind");
 
 String content = multi.getFilesystemName("content");
 String image = multi.getFilesystemName("image");
@@ -38,6 +41,7 @@ vo.setPno(pno);
 vo.setPname(pname);
 vo.setPrice(price);
 vo.setColor(color);
+vo.setPkind(pkind);
 vo.setUnit(unit);
 
 //이미지와 내용 이미지를 수정을 했는지 확인하는 변수

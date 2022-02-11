@@ -43,6 +43,7 @@ footer {
 	background-color: black;
 	padding: 25px;
 	color: #ddd;
+	margin: 100px;
 }
 
 .carousel-inner img {
@@ -120,7 +121,7 @@ article {
 	<article>
 		<decorator:body />
 	</article>
-	<footer class="container-fluid text-center navbar navbar-inverse navbar-fixed-bottom">
+	<footer class="container-fluid text-center navbar navbar-inverse">
 		<p>이 홈페이지의 저작권은 이영환에게 있습니다.</p>
 	</footer>
 </body>

@@ -2,6 +2,8 @@
 <%@page import="com.ezenparty.product.service.ProductViewService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 String strPno = request.getParameter("pno");
 long pno = Long.parseLong(strPno);
@@ -49,6 +51,27 @@ request.setAttribute("vo", vo);
 				<div class="col-sm-10">
 					<input type="text" name="color" id="color" class="form-control"
 						maxlength="10" value="${vo.color }"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="pkind" class="control-label col-sm-2">종류</label>
+				<div class="col-sm-10">
+					<select name="pkind" id="pkind" class="form-control">
+						<option value="${vo.pkind }" selected="selected">
+							<c:choose>
+								<c:when test="${vo.pkind eq 'colorB' }">기본/색상 풍선</c:when>
+								<c:when test="${vo.pkind eq 'numberB' }">숫자 풍선</c:when>
+								<c:when test="${vo.pkind eq 'charB' }">캐릭터 풍선</c:when>
+								<c:when test="${vo.pkind eq 'birthB' }">생일 풍선</c:when>
+								<c:otherwise>없음</c:otherwise>
+							</c:choose>
+						</option>
+						<option disabled="disabled">=======</option>
+						<option value="colorB">기본/색깔풍선</option>
+						<option value="numberB">숫자풍선</option>
+						<option value="charB">캐릭터풍선</option>
+						<option value="birthB">생일풍선</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">

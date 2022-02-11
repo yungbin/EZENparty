@@ -27,8 +27,7 @@ public class ProductDAO {
 			con = DB.getConnection();
 			
 			// 3.
-			String sql = "select pno, pname, "
-					+ " to_char(price, 'fm999,999,999,999,999,990') price, image "
+			String sql = "select pno, pname, price , image "
 					+ " from product order by pno desc ";
 			// 3-1. 순서번호
 			sql = "select rownum rnum, pno, pname, price, image from( " + sql + ")";
@@ -52,8 +51,8 @@ public class ProductDAO {
 					ProductVO vo = new ProductVO();
 					
 					vo.setPno(rs.getLong("pno"));
-					vo.setPrice(rs.getString("price"));
 					vo.setPname(rs.getString("pname"));
+					vo.setPrice(rs.getLong("price"));
 					vo.setImage(rs.getString("image"));
 					
 					list.add(vo);
@@ -125,9 +124,8 @@ public class ProductDAO {
 			con = DB.getConnection();
 
 			// 3.
-			String sql = "select pno, pname, "
-					+ " to_char(price, 'fm999,999,999,999,999,990') price, color, unit, image, content, "
-					+ " to_char(writeDate, 'yyyy-mm-dd') writeDate, pkind"
+			String sql = "select pno, pname, price, color, unit, image, content, "
+					+ " writeDate, pkind"
 					+ " from product where pno = ?";
 			// sql 확인용
 			System.out.println("ProductDAO.list() sql >> " + sql);
@@ -144,7 +142,7 @@ public class ProductDAO {
 
 				vo.setPno(rs.getLong("pno"));
 				vo.setPname(rs.getString("pname"));
-				vo.setPrice(rs.getString("price"));
+				vo.setPrice(rs.getLong("price"));
 				vo.setColor(rs.getString("color"));
 				vo.setUnit(rs.getInt("unit"));
 				vo.setImage(rs.getString("image"));
@@ -181,17 +179,18 @@ public class ProductDAO {
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
-			String sql = "insert into product(pno, pname, price, color, unit, image, content) "
-					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?) ";
+			String sql = "insert into product(pno, pname, price, color, unit, image, content, pkind) "
+					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
 			System.out.println("ProductDAO.write().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
-			pstmt.setString(2, vo.getPrice());
+			pstmt.setLong(2, vo.getPrice());
 			pstmt.setString(3, vo.getColor());
 			pstmt.setInt(4, vo.getUnit());
 			pstmt.setString(5, vo.getImage());
 			pstmt.setString(6, vo.getContent());
+			pstmt.setString(7, vo.getPkind());
 
 			// 5.
 			result = pstmt.executeUpdate();
@@ -225,17 +224,18 @@ public class ProductDAO {
 			con = DB.getConnection();
 			// 3.
 			String sql = "update product set pname = ?, price = ?, color = ?, "
-					+ " unit = ?, image = ?, content = ? where pno = ?";
+					+ " unit = ?, image = ?, content = ?, pkind = ? where pno = ?";
 			System.out.println("ProductDAO.update().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
-			pstmt.setString(2, vo.getPrice());
+			pstmt.setLong(2, vo.getPrice());
 			pstmt.setString(3, vo.getColor());
 			pstmt.setInt(4, vo.getUnit());
 			pstmt.setString(5, vo.getImage());
 			pstmt.setString(6, vo.getContent());
-			pstmt.setLong(7, vo.getPno());
+			pstmt.setString(7, vo.getPkind());
+			pstmt.setLong(8, vo.getPno());
 			// 5.
 			result = pstmt.executeUpdate();
 			// 6. 작동 확인용

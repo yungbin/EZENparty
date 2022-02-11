@@ -8,9 +8,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="pageNav" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
+// taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"
+// 숫자형식을 가격 형식으로 바꾸기위해 jstl 라이브러리를 선언하였다.
+
 // 페이지 정보 받기
 PageObject pageObject = PageObject.getInstance(request);
+// 한 페이지에 보여질 갯수를 기본 10 -> 12로 늘렸습니다.
+pageObject.setPerPageNum(12);
 
 // 서비스 객체 생성후 리스트 세팅
 ProductListService service = new ProductListService();
@@ -40,6 +46,21 @@ $(function(){
 	});
 });
 </script>
+<style type="text/css">
+.thumbnail{
+	border: none;
+}
+.thumbnail:hover{
+	border: 1px solid #bbb;
+	cursor: pointer;
+}
+.pageNavDiv{
+	display: flex;
+}
+.pageNav{
+	margin: auto;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -52,27 +73,34 @@ $(function(){
 				<div class="pno" style="display:none;">${vo.pno }</div>
 					<img src="${vo.image }" alt="Photo List"
 						style="width: 100%; height: 300px;">
-					<div class="caption">
-						<p style="font-size: 20px;">${vo.pname }</p>
-						<b>${vo.price }</b>
+						<div class="caption">
+							<p style="font-size: 20px;">${vo.pname }</p>
+							<!--fmt 태그를 이용하여 숫자형식의 데이터를 가격표시형식으로 표시해준다. 포맷한 결과를 var변수에 넣었다.-->
+							<fmt:formatNumber value="${vo.price }" type="number"
+								var="numberType" />
+							<!-- 포맷한 변수를 선언하면 정상적으로 표시가 된다. -->
+							<b>${numberType} 원</b>
+						</div>
 					</div>
-				</div>
 			</div>
-			<!-- vs.count를 4로 나누어서 나머지가 0이고, 현재 찍으려는 이미지 갯수와 리스트의 갯수가 같지 않으면 if문 접속 -->
+			<!-- vs의 나머지가 0이면서 list.size()랑 같지 않을때 들어간다. -->
 			<c:if test="${vs.count % 4 == 0 && vs.count != list.size()}">
 			<!-- 한 줄을 마감하고 새로운 줄을 시작한다. -->
 	 ${"</div>" }
+	 <!-- 새로운 row 생성 -->
+	 <hr>
 	 ${"<div class='row'>" }
 </c:if>
 		</c:forEach>
 	</div>
-<div>
-	<pageNav:pageNav listURI="list.jsp" pageObject="${pageObject }" />
+<div class="pageNavDiv">
+	<div class="pageNav">
+		<pageNav:pageNav listURI="list.jsp" pageObject="${pageObject }"/>
+	</div>
 </div>
-<!-- 로그인폼 미완성 -->
-<%-- <c:if test="${!empty login }"> --%>
+<c:if test="${!empty login }">
 	<a href="writeForm.jsp" class="btn btn-default">등록</a>
-<%-- </c:if> --%>
+</c:if>
 	<a href="list.jsp" class="btn btn-default">새로고침</a>
 </div>
 </body>

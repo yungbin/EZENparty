@@ -3,7 +3,8 @@ package com.ezenparty.product.vo;
 public class ProductVO {
 	
 	private long pno;
-	private String pname, price;
+	private String pname;
+	private long price;
 	private String color;
 	private int unit;
 	private String image, content, writeDate, pkind;
@@ -56,10 +57,10 @@ public class ProductVO {
 	public void setPkind(String pkind) {
 		this.pkind = pkind;
 	}
-	public String getPrice() {
+	public long getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 	
@@ -68,4 +69,5 @@ public class ProductVO {
 		return "ProductVO [pno=" + pno + ", pname=" + pname + ", price=" + price + ", color=" + color + ", unit=" + unit
 				+ ", image=" + image + ", content=" + content + ", writeDate=" + writeDate + ", pkind=" + pkind + "]";
 	}
+	
 }

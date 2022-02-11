@@ -23,7 +23,7 @@ if(vo != null){
 	session.setAttribute("login", vo);
 	System.out.println("login.jsp - 로그인 처리가 되었습니다.");
 	// main이 없어서 공지 사항으로 보내자. (자동)
-	response.sendRedirect("/member/list.jsp");
+	response.sendRedirect("/product/list.jsp");
 } else {
 	// 정보가 틀렸다. -> 확인 페이지로 이동
 	System.out.println("login.jsp - 아이디나 비밀번호를 확인해 주세요.");
