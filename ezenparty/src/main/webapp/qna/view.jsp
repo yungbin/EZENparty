@@ -9,16 +9,11 @@
 // 글번호를 받아서 long 타입으로 바꾼다.
 String strNo = request.getParameter("no");
 long no = Long.parseLong(strNo);
-// 조회수 증가 변수를 받아서 int 타입으로 바꾼다.
-String strInc = request.getParameter("inc");
-int inc = Integer.parseInt(strInc);
-// 확인용
-System.out.println("view.jsp - no : " + no + "\n inc - " + inc);
 
 // 데이터에 따른 DB 가져오기
 // QnaViewService 객체 생성
 QnaViewService service = new QnaViewService();
-QnaVO vo = service.service(no, inc);
+QnaVO vo = service.service(no);
 
 // 줄바꿈 바꿔치기
 vo.setContent(vo.getContent().replace("\n", "<br>"));
@@ -45,7 +40,7 @@ $(function(){
 </head>
 <body>
 <div class="container">
-<h2>질문 답변 보기</h2>
+<h2>문의 보기</h2>
 <table class="table">
 	<tr>
 		<th>번호</th>
@@ -66,10 +61,6 @@ $(function(){
 	<tr>
 		<th>작성일</th>
 		<td>${vo.writeDate }</td>
-	</tr>
-	<tr>
-		<th>조회수</th>
-		<td>${vo.hit }</td>
 	</tr>
 	<tr>
 		<td colspan="2">

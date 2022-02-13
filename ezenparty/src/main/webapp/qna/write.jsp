@@ -18,7 +18,7 @@ vo.setTitle(title);
 vo.setContent(content);
 vo.setId(id);
 
-System.out.println("질문 등록 - " + vo);
+System.out.println("문의 등록 - " + vo);
 
 // DB에 등록 처리
 QnaWriteService service = new QnaWriteService();

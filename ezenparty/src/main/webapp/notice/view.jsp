@@ -10,6 +10,8 @@
 String strNo = request.getParameter("no");
 long no = Long.parseLong(strNo);
 
+String pt = request.getParameter("pt");
+
 System.out.println("list no - " + no);
 
 // 데이터 불러오기 [Controller - JSP] - service - dao
@@ -75,7 +77,7 @@ request.setAttribute("vo", vo);
 
 <%--	</c:if> --%>
 
-		<a href="list.jsp?pt=${param.pt }&page=${param.page }&perPageNum=${param.perPageNum }" class="btn btn-default">리스트</a>
+		<a href="list.jsp?pt=notice&page=1&perPageNum=10" class="btn btn-default">리스트</a>
 		</td>
 	</tr>
 		</table>

@@ -10,7 +10,7 @@ long no = Long.parseLong(strNo);
 
 // DB에서 QnaVO를 가져온다.
 QnaViewService service = new QnaViewService();
-QnaVO vo = service.service(no, 0); // 뒤에 0은 조회수 1 증가 하지않는다는 뜻.
+QnaVO vo = service.service(no); 
 
 // EL이나 JSTL에서 데이터를 사용하기 위해서 기본 저장 객체에 저장해 둔다.
 request.setAttribute("vo", vo);

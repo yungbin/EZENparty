@@ -1,5 +1,5 @@
-<%@page import="com.ezenparty.member.service.LoginService"%>
-<%@page import="com.ezenparty.member.vo.LoginVO"%>
+<%@page import="com.webjjang.member.service.LoginService"%>
+<%@page import="com.webjjang.member.vo.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

@@ -23,6 +23,6 @@ QnaUpdateService service = new QnaUpdateService();
 service.service(vo);
 
 // 게시판 리스트로 자동 이동시킨다.
-response.sendRedirect("view.jsp?no=" + no + "&inc=0");
+response.sendRedirect("view.jsp?no=" + no);
 %>
 

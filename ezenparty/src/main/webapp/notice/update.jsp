@@ -6,7 +6,7 @@
 <%
 // 한글 처리
 request.setCharacterEncoding("utf-8");
- 
+
 // 데이터 수집 - 번호, 제목, 내용, 시작일, 종료일
 String strNo = request.getParameter("no");
 long no = Long.parseLong(strNo);
