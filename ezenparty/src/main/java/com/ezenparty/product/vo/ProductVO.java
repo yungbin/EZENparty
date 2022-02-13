@@ -5,9 +5,8 @@ public class ProductVO {
 	private long pno;
 	private String pname;
 	private long price;
-	private String color;
 	private int unit;
-	private String image, content, writeDate, pkind;
+	private String image, content, writeDate, pkind, categories;
 	
 	public long getPno() {
 		return pno;
@@ -20,12 +19,6 @@ public class ProductVO {
 	}
 	public void setPname(String pname) {
 		this.pname = pname;
-	}
-	public String getColor() {
-		return color;
-	}
-	public void setColor(String color) {
-		this.color = color;
 	}
 	public int getUnit() {
 		return unit;
@@ -63,11 +56,16 @@ public class ProductVO {
 	public void setPrice(long price) {
 		this.price = price;
 	}
-	
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
 	@Override
 	public String toString() {
-		return "ProductVO [pno=" + pno + ", pname=" + pname + ", price=" + price + ", color=" + color + ", unit=" + unit
-				+ ", image=" + image + ", content=" + content + ", writeDate=" + writeDate + ", pkind=" + pkind + "]";
+		return "ProductVO [pno=" + pno + ", pname=" + pname + ", price=" + price + ", unit=" + unit + ", image=" + image
+				+ ", content=" + content + ", writeDate=" + writeDate + ", pkind=" + pkind + ", categories="
+				+ categories + "]";
 	}
-	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +9,9 @@
 <script type="text/javascript" src="/js/formUtil.js"></script>
 <script type="text/javascript">
 $(function() {
-
-
 	//폼 데이터 넘기기 전에 데이터 검사
 	$("#writeForm").submit(function() {
-	//	alert("데이터 검사");
+//	alert("데이터 검사");
 	
 	//필수 입력 데이터 검사
 		if(emptyCheck("#title", "제목")) return false;
@@ -30,8 +29,8 @@ $(function() {
 		<div class="form-group">
 			<label for="title" class="control-label col-sm-2">분류</label>
 	<select name="kind">
-		<option value="1">공지사항</option>
-		<option value="2">이벤트</option>
+		<option value="공지사항">공지사항</option>
+		<option value="이벤트">이벤트</option>
 	</select>
 	</div>
 		<div class="form-group">
@@ -52,8 +51,7 @@ $(function() {
 			 name="content" id="content" class="form-control"></textarea>
 		</div>
 	</div>
-	<div id="dateRow">
-		<div class="form-group">
+	<div class="form-group">
 		<label for="startDate" class="control-label col-sm-2">시작일</label>
 		<div class="col-sm-10">
 			<!-- 정규 표현식 - \d : 숫자. [0-9] -->
@@ -74,6 +72,4 @@ $(function() {
 			<button type="reset" class="btn btn-default">새로고침</button>
 			<button type="button" onclick="history.back()" class="btn btn-default">취소</button>
 		</div>
-</form>
-</div>
 </body>

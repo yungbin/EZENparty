@@ -26,11 +26,11 @@ public class CartDAO {
 				// 1. 2.
 				con = DB.getConnection();
 				// 3.
-				String sql = "select pno, image, pname, nuit, price from cart order by pno desc ";
+				String sql = "select pno, image, pname, unit, price from cart order by pno desc ";
 				// 3-1. 순서번호
-				sql = "select rownum rnum, pno, image, pname, nuit, price from( " + sql + ")";
+				sql = "select rownum rnum, pno, image, pname, unit, price from( " + sql + ")";
 				// 3-2. 페이지에 대한 데이터
-				sql = "select rnum, pno, image, pname, nuit, price from( " + sql + ") "
+				sql = "select rnum, pno, image, pname, unit, price from( " + sql + ") "
 						+ " where rnum between ? and ? ";
 				// sql 확인용
 				System.out.println("CartDAO.list() sql - " + sql);
@@ -48,7 +48,7 @@ public class CartDAO {
 						vo.setPno(rs.getLong("pno"));
 						vo.setImage(rs.getString("image"));
 						vo.setPname(rs.getString("Pname"));
-						vo.setNuit(rs.getInt("nuit"));
+						vo.setNuit(rs.getInt("unit"));
 						vo.setPrice(rs.getLong("price"));
 						
 						list.add(vo);

@@ -91,19 +91,23 @@ request.setAttribute("vo", vo);
 						<span class="spanDataRow">${vo.color }</span></li>
 					<li class="list-group-item"><strong class="strHead">등록일</strong>
 						<!-- fmt태그를 이용하여 db의 날짜형식 데이터를 var변수에 저장한다. --> 
-						<!-- String 데이터를 Date 타입으로 변경후 -->
+						<!-- String 데이터를 Date 타입으로 변경후 --
 						<fmt:parseDate value="${vo.writeDate}" var="toDate"
 							pattern="yyyy-MM-dd" scope="page" /> <span class="spanDataRow">
 							<fmt:formatDate value="${toDate}" pattern="yyyy년 MM월 dd일" />
 					</span></li>
 					<li class="list-group-item"><strong class="strHead">종류</strong>
-						<span class="spanDataRow"> <c:choose>
-								<c:when test="${vo.pkind eq 'colorB' }">기본/색상 풍선</c:when>
-								<c:when test="${vo.pkind eq 'numberB' }">숫자 풍선</c:when>
-								<c:when test="${vo.pkind eq 'charB' }">캐릭터 풍선</c:when>
-								<c:when test="${vo.pkind eq 'birthB' }">생일 풍선</c:when>
-								<c:otherwise>없음</c:otherwise>
-							</c:choose>
+						<span class="spanDataRow">
+						<!-- c:choose (=switch문), c:when (=case), c:otherwise (=default)-->
+						<c:choose>
+							<c:when test="${vo.pkind eq 'colorB' }">일반풍선</c:when>
+							<c:when test="${vo.pkind eq 'numberB' }">숫자풍선</c:when>
+							<c:when test="${vo.pkind eq 'charB' }">캐릭터풍선</c:when>
+							<c:when test="${vo.pkind eq 'birthB' }">생일풍선</c:when>
+							<c:when test="${vo.pkind eq 'halloween' }">할로윈의상</c:when>
+							<c:when test="${vo.pkind eq 'birthday' }">생일파티의상</c:when>
+							<c:otherwise>없음</c:otherwise>
+						</c:choose>
 					</span></li>
 				</ul>
 			</div>

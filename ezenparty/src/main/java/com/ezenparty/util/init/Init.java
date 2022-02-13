@@ -71,11 +71,11 @@ public class Init extends HttpServlet {
 		authorityMap.put("/qna/delete.jsp", 1);
 		
 		// 상품리스트 권한
-		authorityMap.put("/product/writeForm.jsp", 9);
-		authorityMap.put("/product/write.jsp", 9);
-		authorityMap.put("/product/updateForm.jsp", 9);
-		authorityMap.put("/product/update.jsp", 9);
-		authorityMap.put("/product/delete.jsp", 9);
+//		authorityMap.put("/product/writeForm.jsp", 9);
+//		authorityMap.put("/product/write.jsp", 9);
+//		authorityMap.put("/product/updateForm.jsp", 9);
+//		authorityMap.put("/product/update.jsp", 9);
+//		authorityMap.put("/product/delete.jsp", 9);
 		
 	}
 

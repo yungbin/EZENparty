@@ -25,23 +25,23 @@ public class NoticeDAO {
 
 			con = DB.getConnection();
 
-			String sql = "select no, title, ";
+			String sql = "select no, title, kind, ";
 			sql += " to_char(startDate, 'yyyy-mm-dd') startDate, ";
 			sql += " to_char(endDate, 'yyyy-mm-dd') endDate, ";
-			sql += " to_char(writeDate, 'yyyy-mm-dd') writeDate "
+			sql += " to_char(writeDate, 'yyyy-mm-dd') writeDate, writer "
 					+ " from notice ";
 
 			// 조건에 맞는 쿼리 추가. -> 동적 쿼리 : 넘어오는 pt 변수의 값으로 정한다.
 
 			switch (pageObject.getPeriod()) {
 			case "notice":
-				sql += " WHERE kind = 1 ";
+				sql += " WHERE kind = '공지사항' ";
 				break;
 			case "event":
-				sql += " WHERE kind = 2 ";
+				sql += " WHERE startDate <= SYSDATE AND endDate >= TRUNC(SYSDATE) AND kind = '이벤트' ";
 				break;
-			case "all":
-				sql += " ";
+			case "resEvent":
+				sql += " WHERE startDate > TRUNC(SYSDATE) AND kind = '이벤트' ";
 				break;
 			default:
 				System.out.println(" 잘못된 정보가 넘어 왔습니다. ");// 잘못된 데이터 일 경우 현재로 작성한다.
@@ -51,8 +51,8 @@ public class NoticeDAO {
 
 			// 정렬
 			sql += " ORDER BY writeDate DESC, no Desc";
-			sql = " select rownum rnum, no, title, startDate, endDate, writeDate from( " + sql + ")";
-			sql = " select rownum rnum, no, title, startDate, endDate, writeDate from( " + sql + ")"
+			sql = " select rownum rnum, no, title, kind, startDate, endDate, writeDate, writer from( " + sql + ")";
+			sql = " select rownum rnum, no, title, kind, startDate, endDate, writeDate, writer from( " + sql + ")"
 					+ " where rnum between ? and ? ";
 
 			System.out.println("NoticeDAO.list().sql : " + sql);
@@ -72,9 +72,11 @@ public class NoticeDAO {
 					// select no, title, startDate, endDate, writeDate 
 					vo.setNo(rs.getLong("no"));
 					vo.setTitle(rs.getString("title"));
+					vo.setKind(rs.getString("kind"));
 					vo.setStartDate(rs.getString("startDate"));
 					vo.setEndDate(rs.getString("endDate"));
 					vo.setWriteDate(rs.getString("writeDate"));
+					vo.setWriter(rs.getString("writer"));
 
 					list.add(vo);				
 				}
@@ -91,7 +93,6 @@ public class NoticeDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("list" + list);
 		return list;
 	}
 
@@ -108,13 +109,13 @@ public class NoticeDAO {
 			// 조건에 맞는 쿼리 추가. -> 동적 쿼리 : 넘어오는 pt 변수의 값으로 정한다.
 			switch (pageObject.getPeriod()) {
 			case "notice":
-				sql += " WHERE kind = 1 ";
+				sql += " WHERE kind = '공지사항' ";
 				break;
 			case "event":
-				sql += " WHERE kind = 2 ";
+				sql += " WHERE startDate <= SYSDATE AND endDate >= TRUNC(SYSDATE) AND kind = '이벤트' ";
 				break;
-			case "all":
-				sql += " ";
+			case "resEvent":
+				sql += " WHERE startDate > TRUNC(SYSDATE) AND kind = '이벤트' ";
 				break;
 			default:
 				System.out.println(" 잘못된 정보가 넘어 왔습니다. ");// 잘못된 데이터 일 경우 현재로 작성한다.
@@ -153,7 +154,7 @@ public class NoticeDAO {
 			String sql = " SELECT no, title, content, "
 					+ " to_char(startDate, 'yyyy-mm-dd') startDate, "
 					+ " to_char(endDate, 'yyyy-mm-dd') endDate, "
-					+ " to_char(writeDate, 'yyyy-mm-dd') writeDate "
+					+ " to_char(writeDate, 'yyyy-mm-dd') writeDate, writer "
 					+ " FROM notice "
 					+ " WHERE no = ? ";
 			// 4.
@@ -170,6 +171,7 @@ public class NoticeDAO {
 				vo.setStartDate(rs.getString("startDate"));
 				vo.setEndDate(rs.getString("endDate"));
 				vo.setWriteDate(rs.getString("writeDate"));
+				vo.setWriter(rs.getString("writer"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

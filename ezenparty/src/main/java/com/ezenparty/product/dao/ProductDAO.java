@@ -28,7 +28,40 @@ public class ProductDAO {
 			
 			// 3.
 			String sql = "select pno, pname, price , image "
-					+ " from product order by pno desc ";
+					+ " from product ";
+
+			switch (pageObject.getPeriod()) {
+			case "colorB":
+				sql += " where categories = 'balloon' and pkind = 'colorB' ";
+				break;
+			case "numberB":
+				sql += " where categories = 'balloon' and pkind = 'numberB' ";
+				break;
+			case "charB":
+				sql += " where categories = 'balloon' and pkind = 'charB' ";
+				break;
+			case "birthB":
+				sql += " where categories = 'balloon' and pkind = 'birthB' ";
+				break;
+			case "halloween":
+				sql += " where categories = 'cos' and pkind = 'halloween' ";
+				break;
+			case "birthday":
+				sql += " where categories = 'cos' and pkind = 'birthday' ";
+				break;
+			case "balloonAll":
+				sql += " where categories = 'balloon' ";
+				break;
+			case "cosAll":
+				sql += " where categories = 'cos' ";
+				break;
+			default:
+				System.out.println(" 잘못된 정보가 넘어 왔습니다. ");// 잘못된 데이터 일 경우 모든 이미지를 넘긴다.
+				sql += "";
+				break;
+			}
+			sql += " order by writeDate desc";
+			
 			// 3-1. 순서번호
 			sql = "select rownum rnum, pno, pname, price, image from( " + sql + ")";
 			// 3-2. 페이지에 대한 데이터
@@ -124,8 +157,8 @@ public class ProductDAO {
 			con = DB.getConnection();
 
 			// 3.
-			String sql = "select pno, pname, price, color, unit, image, content, "
-					+ " writeDate, pkind"
+			String sql = "select pno, pname, price, unit, image, content, "
+					+ " writeDate, pkind, categories"
 					+ " from product where pno = ?";
 			// sql 확인용
 			System.out.println("ProductDAO.list() sql >> " + sql);
@@ -143,7 +176,6 @@ public class ProductDAO {
 				vo.setPno(rs.getLong("pno"));
 				vo.setPname(rs.getString("pname"));
 				vo.setPrice(rs.getLong("price"));
-				vo.setColor(rs.getString("color"));
 				vo.setUnit(rs.getInt("unit"));
 				vo.setImage(rs.getString("image"));
 				vo.setContent(rs.getString("content"));
@@ -179,18 +211,17 @@ public class ProductDAO {
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
-			String sql = "insert into product(pno, pname, price, color, unit, image, content, pkind) "
-					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
+			String sql = "insert into product(pno, pname, price, unit, image, content, pkind) "
+					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?) ";
 			System.out.println("ProductDAO.write().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
 			pstmt.setLong(2, vo.getPrice());
-			pstmt.setString(3, vo.getColor());
-			pstmt.setInt(4, vo.getUnit());
-			pstmt.setString(5, vo.getImage());
-			pstmt.setString(6, vo.getContent());
-			pstmt.setString(7, vo.getPkind());
+			pstmt.setInt(3, vo.getUnit());
+			pstmt.setString(4, vo.getImage());
+			pstmt.setString(5, vo.getContent());
+			pstmt.setString(6, vo.getPkind());
 
 			// 5.
 			result = pstmt.executeUpdate();
@@ -223,19 +254,18 @@ public class ProductDAO {
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
-			String sql = "update product set pname = ?, price = ?, color = ?, "
+			String sql = "update product set pname = ?, price = ?, "
 					+ " unit = ?, image = ?, content = ?, pkind = ? where pno = ?";
 			System.out.println("ProductDAO.update().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
 			pstmt.setLong(2, vo.getPrice());
-			pstmt.setString(3, vo.getColor());
-			pstmt.setInt(4, vo.getUnit());
-			pstmt.setString(5, vo.getImage());
-			pstmt.setString(6, vo.getContent());
-			pstmt.setString(7, vo.getPkind());
-			pstmt.setLong(8, vo.getPno());
+			pstmt.setInt(3, vo.getUnit());
+			pstmt.setString(4, vo.getImage());
+			pstmt.setString(5, vo.getContent());
+			pstmt.setString(6, vo.getPkind());
+			pstmt.setLong(7, vo.getPno());
 			// 5.
 			result = pstmt.executeUpdate();
 			// 6. 작동 확인용

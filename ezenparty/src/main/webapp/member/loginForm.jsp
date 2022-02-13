@@ -117,7 +117,8 @@
         <h3 class="loginBtnTd" style="letter-spacing:-1px;">Sign in to Web</h3>
 
         <p>
-            <input type="submit" value="Sign in with Naver" class="btn" style="background-color:#217Af0">
+            <input type="submit" value="Sign in with Naver" class="btn" style="background-color:#217Af0"
+            >
         </p>
 
         <hr>

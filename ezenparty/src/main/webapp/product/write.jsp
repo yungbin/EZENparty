@@ -18,7 +18,6 @@ String pname = multi.getParameter("pname");
 String strPrice = multi.getParameter("price");
 long price = Long.parseLong(strPrice);
 
-String color = multi.getParameter("color");
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
@@ -29,7 +28,6 @@ String image = multi.getFilesystemName("image");
 ProductVO vo = new ProductVO();
 vo.setPname(pname);
 vo.setPrice(price);
-vo.setColor(color);
 vo.setUnit(unit);
 vo.setContent(path + content);
 vo.setImage(path + image);

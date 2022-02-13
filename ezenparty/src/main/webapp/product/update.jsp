@@ -25,7 +25,6 @@ String pname = multi.getParameter("pname");
 String strPrice = multi.getParameter("price");
 long price = Long.parseLong(strPrice);
 
-String color = multi.getParameter("color");
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
@@ -40,7 +39,6 @@ ProductVO vo = new ProductVO();
 vo.setPno(pno);
 vo.setPname(pname);
 vo.setPrice(price);
-vo.setColor(color);
 vo.setPkind(pkind);
 vo.setUnit(unit);
 
