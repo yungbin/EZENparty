@@ -21,9 +21,9 @@ MultipartRequest multi = new MultipartRequest(request, realPath, size, "utf-8", 
 String id = multi.getParameter("id");
 String pw = multi.getParameter("pw");
 String name = multi.getParameter("name");
-String gender = multi.getParameter("gender");
 String birth = multi.getParameter("birth");
 String tel = multi.getParameter("tel");
+String address = multi.getParameter("address");
 String email = multi.getParameter("email");
 String photo = multi.getFilesystemName("photo");
 // 확인용
@@ -41,6 +41,7 @@ vo.setPw(pw);
 vo.setName(name);
 vo.setBirth(birth);
 vo.setTel(tel);
+vo.setAddress(address);
 vo.setEmail(email);
 vo.setPhoto(path + photo);
 
@@ -52,5 +53,5 @@ MemberWriteService service = new MemberWriteService();
 int result = service.service(vo);
 
 // 회원관리 리스트로 자동 이동시킨다.
-response.sendRedirect("list.jsp");
+response.sendRedirect("/main/main.jsp");
 %>

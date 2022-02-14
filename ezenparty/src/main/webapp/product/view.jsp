@@ -26,15 +26,44 @@ request.setAttribute("vo", vo);
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/formUtil.js"></script>
 <script>
 	// min (시작 숫자 및 최소 숫자) , max (최대 숫자), step (화살표를 누를때 얼마만큼 올라가거나 내려갈건지)
-	$(function() {
-		$("#spinner").spinner({
-			min : 0,
-			max : 100,
-			step : 1
-		});
+$(function() {
+	$("#spinner").spinner({
+		min : 1,
+		max : 100,
+		step : 1
 	});
+// 	ui-spinner-up 증가 화살표
+// 	ui-spinner-down 감소 화살표
+
+	$(".ui-spinner-up").on("click", function(){
+		// 확인용
+		//alert("하하" + Number($("#spinner").val()));
+		var price = parseInt($("#priceSpan").text());
+		var up = parseInt($("#spinner").val());
+		
+		var total = price * up;
+		
+		// 확인용
+		//alert(price + "*" + up + "=" + total);
+		$("#totalPrice").text(addComma(String(total)));
+	});
+	$(".ui-spinner-down").on("click", function(){
+		// 확인용
+		//alert("하하" + Number($("#spinner").val()));
+		var price = parseInt($("#priceSpan").text());
+		var up = parseInt($("#spinner").val());
+		
+		var total = price * up;
+		
+		// 확인용
+		//alert(price + "*" + up + "=" + total);
+		$("#totalPrice").text(addComma(String(total)));
+
+	});
+});
 </script>
 <style type="text/css">
 .strHead {
@@ -68,6 +97,9 @@ request.setAttribute("vo", vo);
 	font-style: italic;
 	font-size: 32px;
 }
+.panel-body, .panel-heading{
+	text-align: right;
+}
 </style>
 </head>
 <body style="background: #eee;">
@@ -86,9 +118,9 @@ request.setAttribute("vo", vo);
 						<!-- fmt 태그를 이용하여 price를 가격표시형식으로 바꾼뒤 포맷한 값을 var변수에 저장한다. -->
 						<fmt:formatNumber value="${vo.price }" type="number" var="numberType" />
 						<!-- 포맷한 변수를 출력한다. 정상적으로 표시된다. -->
-						<span class="spanDataRow">${numberType}</span></li>
-					<li class="list-group-item"><strong class="strHead">색상</strong>
-						<span class="spanDataRow">${vo.color }</span></li>
+						<span class="spanDataRow">${numberType}</span>
+						<span id="priceSpan" style="display: none;">${vo.price}</span>
+						</li>
 					<li class="list-group-item"><strong class="strHead">등록일</strong>
 						<!-- fmt태그를 이용하여 db의 날짜형식 데이터를 var변수에 저장한다. --> 
 						<!-- String 데이터를 Date 타입으로 변경후 -->
@@ -99,15 +131,21 @@ request.setAttribute("vo", vo);
 					<li class="list-group-item"><strong class="strHead">종류</strong>
 						<span class="spanDataRow">
 						<!-- c:choose (=switch문), c:when (=case), c:otherwise (=default)-->
-						<c:choose>
-							<c:when test="${vo.pkind eq 'colorB' }">일반풍선</c:when>
-							<c:when test="${vo.pkind eq 'numberB' }">숫자풍선</c:when>
-							<c:when test="${vo.pkind eq 'charB' }">캐릭터풍선</c:when>
-							<c:when test="${vo.pkind eq 'birthB' }">생일풍선</c:when>
-							<c:when test="${vo.pkind eq 'halloween' }">할로윈의상</c:when>
-							<c:when test="${vo.pkind eq 'birthday' }">생일파티의상</c:when>
-							<c:otherwise>없음</c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${vo.categories eq 'balloon' }">풍선</c:when>
+								<c:when test="${vo.categories eq 'cos' }">코스프레</c:when>
+								<c:otherwise>없음</c:otherwise>
+							</c:choose>
+							/
+							<c:choose>
+								<c:when test="${vo.pkind eq 'colorB' }">일반풍선</c:when>
+								<c:when test="${vo.pkind eq 'numberB' }">숫자풍선</c:when>
+								<c:when test="${vo.pkind eq 'charB' }">캐릭터풍선</c:when>
+								<c:when test="${vo.pkind eq 'birthB' }">생일풍선</c:when>
+								<c:when test="${vo.pkind eq 'halloween' }">할로윈의상</c:when>
+								<c:when test="${vo.pkind eq 'birthday' }">생일파티의상</c:when>
+								<c:otherwise>없음</c:otherwise>
+							</c:choose>
 					</span></li>
 				</ul>
 			</div>
@@ -116,20 +154,29 @@ request.setAttribute("vo", vo);
 		<form action="/cart/list.jsp" method="post" class="form-horizontal">
 			<div class="row">
 				<div class="form-group">
-					<!-- input 태그에 id를 spinner로 만들어주면 수량에 관한 UI(spinner)가 출력된다. -->
-					<div class="col-sm-7"></div>
-					<label for="spinner" class="control-label col-sm-1" style="text-align: center;  font-size: 20px; padding: 4px;">수량</label> 
-					<div class="col-sm-4">
-						<input id="spinner" name="unit">
+					<!-- 수량에 따른 계산 부분 -->
+					<div>
+						<div style="width:50%;"></div>
+						<!-- float을 이용하여 레이아웃을 잡는다. -->
+						<div class="panel panel-default" style="width:50%; float: right;">
+							<div class="panel-heading">
+								<label for="spinner" class="control-label"
+									style="text-align: center; font-size: 20px; padding: 4px;">수량</label>
+								<input id="spinner" name="unit" value="1">
+							</div>
+							<div class="panel-body"><span>총 상품금액 : </span>
+							<fmt:formatNumber value="${vo.price }" type="number" var="total" />
+							<strong id="totalPrice">${total }</strong></div>
+						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-7"></div>
+					<div class="col-sm-1"></div>
 					<div class="col-sm-4" id="publicBtn" style="margin: 30px 0; text-align: center;">
 						<button class="btn btn-default btn-lg">장바구니</button>
 						<button class="btn btn-default btn-lg">구매</button>
 					</div>
-					<div class="col-sm-1"></div>
 				</div>
 			</div>
 		</form>
@@ -138,8 +185,8 @@ request.setAttribute("vo", vo);
 			class="btn btn-default btn-lg">글 수정</a>
 			<a href="delete.jsp?pno=${vo.pno }&oldImage=${vo.image}&oldContent=${vo.content}"
 			class="btn btn-default btn-lg">글 삭제</a> 
-			<a href="list.jsp?page=${param.page }&perPageNum=${param.perPageNum }"
-			class="btn btn-default btn-lg">리스트</a>
+			<a href="list.jsp?page=${param.page }&perPageNum=${param.perPageNum }
+			&kind=${param.kind}&categories=${param.categories}"class="btn btn-default btn-lg">리스트</a>
 		</div>
 		<hr>
 		<div class="row productInfo">

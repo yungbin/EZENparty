@@ -21,9 +21,13 @@ long price = Long.parseLong(strPrice);
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
+String categories = multi.getParameter("categories");
 
 String content = multi.getFilesystemName("content");
 String image = multi.getFilesystemName("image");
+
+System.out.println("write.jsp categories >>>>" + categories);
+System.out.println("write.jsp pkind >>>>" + pkind);
 
 ProductVO vo = new ProductVO();
 vo.setPname(pname);
@@ -32,6 +36,7 @@ vo.setUnit(unit);
 vo.setContent(path + content);
 vo.setImage(path + image);
 vo.setPkind(pkind);
+vo.setCategories(categories);
 
 //확인용
 System.out.println("확인용 [write.jsp] vo >>> " + vo);
@@ -39,5 +44,5 @@ System.out.println("확인용 [write.jsp] vo >>> " + vo);
 ProductWriteService service = new ProductWriteService();
 int result = service.service(vo);
 
-response.sendRedirect("list.jsp");
+response.sendRedirect("list.jsp?categories=" + categories + "&kind=" + pkind);
 %>

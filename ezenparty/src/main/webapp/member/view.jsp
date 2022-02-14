@@ -56,7 +56,7 @@ $(function(){
 	<table class="table">
 		<tr>
 			<th>사진</th>
-			<td><img src="${vo.photo }" id="memberImage">
+			<td><img src="${vo.photo }" alt="" id="memberImage">
 				<button type="button" onclick="$('#changeImageDiv').show()" class="btn btn-default">바꾸기</button>
 				<div id="changeImageDiv">
 					<form action="changePhoto.jsp" method="post" enctype="multipart/form-data">
@@ -84,6 +84,10 @@ $(function(){
 		<tr>
 			<th>전화번호</th>
 			<td>${vo.tel }</td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td>${vo.address }</td>
 		</tr>
 		<tr>
 			<th>이메일</th>

@@ -12,6 +12,7 @@
 		<pattern>/grade/*</pattern>
 		<pattern>/qna/*</pattern>
 		<pattern>/member/*</pattern>
+		<pattern>/main/*</pattern>
 	</decorator>
 	
 <!-- 	<decorator name="admin" page="admin_decorator.jsp"> -->

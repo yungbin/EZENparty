@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// 한글 처리
+// 한글처리
 request.setCharacterEncoding("utf-8");
 // 데이터 수집
 String strGradeNo = request.getParameter("gradeNo");
 int gradeNo = Integer.parseInt(strGradeNo);
 String gradeName = request.getParameter("gradeName");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>등급 수정 폼</title>
 <style type="text/css">
-th, td{
+th, td {
 	border: 1px solid #444;
+
 }
 </style>
 </head>
@@ -34,9 +34,9 @@ th, td{
 </tr>
 <tr>
 	<td colspan="2">
-		<button>수정</button>
-		<button type="reset">다시입력</button>
-		<button type="button" onclick="history.back();">취소</button>
+	<button>수정</button>
+	<button type="reset">다시입력</button>
+	<button type="button" onclick="history.back();">취소</button>
 	</td>
 </tr>
 </table>

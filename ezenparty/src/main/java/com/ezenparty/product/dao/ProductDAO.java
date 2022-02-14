@@ -122,6 +122,37 @@ public class ProductDAO {
 			con = DB.getConnection();
 
 			String sql = "select count(*) from product";
+			
+			switch (pageObject.getPeriod()) {
+			case "colorB":
+				sql += " where categories = 'balloon' and pkind = 'colorB' ";
+				break;
+			case "numberB":
+				sql += " where categories = 'balloon' and pkind = 'numberB' ";
+				break;
+			case "charB":
+				sql += " where categories = 'balloon' and pkind = 'charB' ";
+				break;
+			case "birthB":
+				sql += " where categories = 'balloon' and pkind = 'birthB' ";
+				break;
+			case "halloween":
+				sql += " where categories = 'cos' and pkind = 'halloween' ";
+				break;
+			case "birthday":
+				sql += " where categories = 'cos' and pkind = 'birthday' ";
+				break;
+			case "balloonAll":
+				sql += " where categories = 'balloon' ";
+				break;
+			case "cosAll":
+				sql += " where categories = 'cos' ";
+				break;
+			default:
+				System.out.println(" 잘못된 정보가 넘어 왔습니다. ");// 잘못된 데이터 일 경우 모든 이미지를 넘긴다.
+				sql += "";
+				break;
+			}
 
 			pstmt = con.prepareStatement(sql);
 
@@ -181,6 +212,7 @@ public class ProductDAO {
 				vo.setContent(rs.getString("content"));
 				vo.setWriteDate(rs.getString("writeDate"));
 				vo.setPkind(rs.getString("pkind"));
+				vo.setCategories(rs.getString("categories"));
 			}
 
 		} catch (Exception e) {
@@ -211,8 +243,8 @@ public class ProductDAO {
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
-			String sql = "insert into product(pno, pname, price, unit, image, content, pkind) "
-					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?) ";
+			String sql = "insert into product(pno, pname, price, unit, image, content, pkind, categories) "
+					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
 			System.out.println("ProductDAO.write().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
@@ -222,6 +254,7 @@ public class ProductDAO {
 			pstmt.setString(4, vo.getImage());
 			pstmt.setString(5, vo.getContent());
 			pstmt.setString(6, vo.getPkind());
+			pstmt.setString(7, vo.getCategories());
 
 			// 5.
 			result = pstmt.executeUpdate();
@@ -251,11 +284,12 @@ public class ProductDAO {
 		int result = 0;
 		try {
 
+			System.out.println("productDAO.update() vo >> " + vo);
 			// 1. 2.
 			con = DB.getConnection();
 			// 3.
 			String sql = "update product set pname = ?, price = ?, "
-					+ " unit = ?, image = ?, content = ?, pkind = ? where pno = ?";
+					+ " unit = ?, image = ?, content = ?, pkind = ?, categories = ? where pno = ?";
 			System.out.println("ProductDAO.update().sql - " + sql);
 			// 4.
 			pstmt = con.prepareStatement(sql);
@@ -265,7 +299,8 @@ public class ProductDAO {
 			pstmt.setString(4, vo.getImage());
 			pstmt.setString(5, vo.getContent());
 			pstmt.setString(6, vo.getPkind());
-			pstmt.setLong(7, vo.getPno());
+			pstmt.setString(7, vo.getCategories());
+			pstmt.setLong(8, vo.getPno());
 			// 5.
 			result = pstmt.executeUpdate();
 			// 6. 작동 확인용

@@ -66,3 +66,10 @@ function autoNext(objStr, nextObjStr, len){
 		if($(objStr).val().length >= len) $(nextObjStr).focus();
 	});
 }
+
+//천단위 콤마 함수
+// 사용법 : addComma(변경하려는 값)
+function addComma(value) {
+	value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return value;
+}

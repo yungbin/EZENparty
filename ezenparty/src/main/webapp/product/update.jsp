@@ -28,10 +28,10 @@ long price = Long.parseLong(strPrice);
 String strUnit = multi.getParameter("unit");
 int unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
+String categories = multi.getParameter("categories");
 
 String content = multi.getFilesystemName("content");
 String image = multi.getFilesystemName("image");
-
 String oldContent = multi.getParameter("oldContent");
 String oldImage = multi.getParameter("oldImage");
 
@@ -39,9 +39,11 @@ ProductVO vo = new ProductVO();
 vo.setPno(pno);
 vo.setPname(pname);
 vo.setPrice(price);
-vo.setPkind(pkind);
 vo.setUnit(unit);
+vo.setCategories(categories);
+vo.setPkind(pkind);
 
+System.out.println("update.jsp vo >> " + vo);
 //이미지와 내용 이미지를 수정을 했는지 확인하는 변수
 int cnts = 0;
 int cnti = 0;

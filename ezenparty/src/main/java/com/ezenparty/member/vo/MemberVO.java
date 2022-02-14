@@ -2,11 +2,10 @@ package com.ezenparty.member.vo;
 
 public class MemberVO {
 	
-	private String id, pw, name, birth, tel, email,
+	private String id, pw, name, birth, tel, address, email,
 	regDate, conDate, status, photo;
 	private long gradeNo;
 	private String gradeName;
-	
 	public String getId() {
 		return id;
 	}
@@ -36,6 +35,12 @@ public class MemberVO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getEmail() {
 		return email;
@@ -79,13 +84,11 @@ public class MemberVO {
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
 	}
-	
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + 
-	", birth=" + birth + ", tel=" + tel + ", email=" + email + ", regDate=" + regDate + ", conDate=" + conDate + ", status="
-				+ status + ", photo=" + photo + ", gradeNo=" + gradeNo + ", gradeName=" + gradeName + "]";
+		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", birth=" + birth + ", tel=" + tel
+				+ ", address=" + address + ", email=" + email + ", regDate=" + regDate + ", conDate=" + conDate
+				+ ", status=" + status + ", photo=" + photo + ", gradeNo=" + gradeNo + ", gradeName=" + gradeName + "]";
 	}
-	
 	
 }

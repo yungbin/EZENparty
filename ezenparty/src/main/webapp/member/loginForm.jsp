@@ -117,21 +117,20 @@
         <h3 class="loginBtnTd" style="letter-spacing:-1px;">Sign in to Web</h3>
 
         <p>
-            <input type="submit" value="Sign in with Naver" class="btn" style="background-color:#217Af0"
-            >
+            <input type="submit" onclick="goNaver()" value="Sign in with Naver" class="btn" id="naverBtn" style="background-color:#217Af0">
         </p>
 
         <hr>
         <label>        
         <!-- <span>ID</span> -->
-        <p style="text-align: left; font-size:12px; color:#666">Username</p>
+        <p style="text-align: left; font-size:12px; color:#666;">Username</p>
         <input type="text" name = "id" placeholder="아이디를 입력" class="size">
         <!-- <input type="submit" value="확인"> -->
         </label>
 
         <label>
         <!-- <span>PW</span> -->
-        <p style="text-align: left; font-size:12px; color:#666">Password</p>
+        <p style="text-align: left; font-size:12px; color:#666;">Password</p>
         <input type="text" name = "pw" placeholder="비밀번호를 입력" class="size">
         <!-- <input type="submit" value="확인"> -->
         </label>
@@ -153,3 +152,10 @@
     </div><!--con-->
 
 </body>
+   <script type="text/javascript"> 
+	let naverBtn = document.getElementById("naverBtn");
+	function goNaver() {
+		location.href = 'https://www.naver.com/';
+		
+	}
+</script> 

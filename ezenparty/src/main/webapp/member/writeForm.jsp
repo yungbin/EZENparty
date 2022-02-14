@@ -93,16 +93,6 @@ body {
   background: none;
 }
 
-.cellphoneNo {
-  width: 100%;
-  border:none;
-  outline:none;
-  color: #636e72;
-  font-size:16px;
-  height:25px;
-  background: none;
-}
-
 .btn {
   position:relative;
   left:40%;
@@ -128,6 +118,16 @@ body {
 <script type="text/javascript" src="/js/formUtil.js"></script>
 <script type="text/javascript">
 $(function(){
+	// 아이디 -> 비어있으면 경고>포커스>이동막기
+	if(emptyCheck("#id", "이름")) return false; 
+	// 비밀번호 -> 비어있으면 경고>포커스>이동막기
+	if(emptyCheck("#pw", "비밀번호")) return false;
+	// 비밀번호 확인 -> 비어있으면 경고>포커스>이동막기
+	if(emptyCheck("#pw2", "비밀번호")) return false;
+	// 이름 -> 비어있으면 경고>포커스>이동막기
+	if(emptyCheck("#name", "이름")) return false;
+	// 주소 -> 비어있으면 경고>포커스>이동막기
+	if(emptyCheck("#address", "주소")) return false;
 	// 생년월일 10자리가 차면 연락 처리로 넘어간다.
 	$("#birth").keyup(function(){ autoNext("#birth", "#tel", 10);})
 	// 연락처 13자리가 차면 연락 처리로 넘어간다.
@@ -208,7 +208,7 @@ $(function(){
 		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 			<input type="password" name="pw2" maxlength="20" id="pw2" class="form-control" placeholder="비밀번호 확인"/>
-				<span id="pwMsg">8자 이상을 입력하셔야 합니다.</span>
+				<span id="pw2Msg">8자 이상을 입력하셔야 합니다.</span>
 		</div>
 		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
@@ -242,7 +242,6 @@ $(function(){
 			<div class="textForm">
 				<!-- button이 form tag 안에 있으면 데이터를 전달하는 동작을 하게 된다. -->
 				<button type="submit" class="btn btn-default">회원가입</button>
-				<button type="reset" class="btn btn-default">다시입력</button>
 				<button type="button" onclick="history.back()" class="btn btn-default">취소</button>
 			</div>
 </form>

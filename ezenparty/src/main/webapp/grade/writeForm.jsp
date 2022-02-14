@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
 <title>등급 등록 폼</title>
 <style type="text/css">
-th, td{
+th, td {
 	border: 1px solid #444;
+
 }
 </style>
 </head>

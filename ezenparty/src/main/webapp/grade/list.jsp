@@ -10,8 +10,8 @@ GradeListService service = new GradeListService();
 List<GradeVO> list = service.service();
 
 System.out.println("list.jsp - list : " + list);
-%>
 
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +28,11 @@ th, td{
 <h2>등급 리스트</h2>
 <div>
 <form action="write.jsp" method="post">
-	<input name="gradeNo" placeholder="번호" maxlength="2" pattern="\d{1,2}" required="required" 
+	<input name="gradeNo" placeholder="번호" maxlength="2" pattern="\d{1,2}" required="required"
 	 size="3">
-	<input name="gradeName" placeholder="등급명" pattern="[가-힣]{1,6}" required="required"
+	 <input name="gradeName" placeholder="등급명" pattern="[가-힣]{1,6}" required="required"
 	 size="7">
-	<button>추가</button>
+	 <button>추가</button>
 </form>
 </div>
 <table>
@@ -43,15 +43,15 @@ th, td{
 </tr>
 <% for(GradeVO vo : list){%>
 <form action="update.jsp" method="post">
-	<tr>
-		<td><input value="<%= vo.getGradeNo() %>" name="gradeNo" readonly="readonly"
-			size="3"></td>
-		<td><input value="<%= vo.getGradeName() %>" name="gradeName" ></td>
-		<td>
-			<button>수정</button>
-			<a href="delete.jsp?gradeNo=<%= vo.getGradeNo() %>"><button type="button">삭제</button></a>
-		</td>
-	</tr>
+<tr>
+	<td><input value="<%= vo.getGradeNo() %>" name="gradeNo" readonly="readonly"
+		size="3"></td>
+	<td><input value="<%= vo.getGradeName() %>" name="gradeName"></td>
+	<td>
+		<button>수정</button>
+		<a href="delete.jsp?gradeNo=<%= vo.getGradeNo()%>"><button type="button">삭제</button></a>
+	</td>
+</tr>
 </form>
 <% } %>
 </table>

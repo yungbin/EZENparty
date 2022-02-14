@@ -8,7 +8,7 @@ int gradeNo = Integer.parseInt(strGradeNo);
 
 System.out.println("delete.jsp - gradeNo : " + gradeNo);
 
-//DB에서 데이터 삭제
+// DB에서 데이터 삭제
 GradeDeleteService service = new GradeDeleteService();
 int result = service.service(gradeNo);
 

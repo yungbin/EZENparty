@@ -66,11 +66,11 @@ $(function() {
 			maxlength="10" title="날짜형식 : yyyy-mm-dd"/>
 		</div>
 	</div>
-	</form>
-	</div>
 		<div class="text-center">
 			<button class="btn btn-default">등록</button>
 			<button type="reset" class="btn btn-default">새로고침</button>
 			<button type="button" onclick="history.back()" class="btn btn-default">취소</button>
 		</div>
+</form>
+</div>
 </body>

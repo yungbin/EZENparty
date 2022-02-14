@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String path = "/upload/member/";
+String path = "/upload/image/";
 String realPath = request.getServletContext().getRealPath(path);
 int size = 10 * 1024 * 1024;
 System.out.println("[changePhoto.jsp] realpath>> " + realPath);
@@ -27,7 +27,7 @@ PhotoChangeService service = new PhotoChangeService();
 int result = service.service(vo);
 
 File oldFile = new File(request.getServletContext().getRealPath(oldPhoto));
-if(result > 0 && oldFile.exists() && !oldPhoto.equals("/upload/member/noImage.jpg")){
+if(result > 0 && oldFile.exists() && !oldPhoto.equals("/upload/image/noImage.jpg")){
 	oldFile.delete();
 }
 

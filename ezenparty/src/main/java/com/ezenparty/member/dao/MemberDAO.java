@@ -29,16 +29,16 @@ public class MemberDAO {
 			// 3-1. 원본 데이터
 			String sql = " select m.id, m.name, "
 					+ "	to_char(m.birth, 'yyyy-mm-dd') birth, "
-					+ " m.tel, m.photo, m.gradeNo, g.gradeName, "
+					+ " m.tel, m.address, m.photo, m.gradeNo, g.gradeName, "
 					+ " to_char(m.conDate, 'yyyy-mm-dd') conDate "
 					+ " from member m, grade g "
 					+ " where (m.gradeNo = g.gradeNo) "
 					+ " order by m.regDate desc ";
 			// 3-2. 순서 번호
-			sql = " select rownum rnum, id, name, birth, tel, photo, gradeNo, gradeName, conDate "
+			sql = " select rownum rnum, id, name, birth, tel, address, photo, gradeNo, gradeName, conDate "
 			+ " from( " + sql + ")";
 			// 3-3. 페이지에 해당되는 10개 데이터
-			sql = " select rownum rnum, id, name, birth, tel, photo, gradeNo, gradeName, conDate "
+			sql = " select rownum rnum, id, name, birth, tel, address, photo, gradeNo, gradeName, conDate "
 					+ " from( " + sql + ") where rnum between ? and ? ";
 			
 			pstmt = con.prepareStatement(sql);
@@ -56,6 +56,7 @@ public class MemberDAO {
 					vo.setName(rs.getString("name"));
 					vo.setBirth(rs.getString("birth"));
 					vo.setTel(rs.getString("tel"));
+					vo.setAddress(rs.getString("address"));
 					vo.setPhoto(rs.getString("photo"));
 					vo.setGradeNo(rs.getInt("gradeNo"));
 					vo.setGradeName(rs.getString("gradeName"));
@@ -122,7 +123,7 @@ public class MemberDAO {
 			
 			con = DB.getConnection();
 			
-			String sql = " SELECT m.id, m.name, m.birth, m.tel, m. email, m.regDate, "
+			String sql = " SELECT m.id, m.name, m.birth, m.tel, m.address, m. email, m.regDate, "
 					+ " m.conDate, m.status, m.photo, m.gradeNo, g.gradeName "
 					+ " FROM member m, grade g "
 					+ " WHERE (id = ?) AND (m.gradeNo = g.gradeNo) ";
@@ -140,6 +141,7 @@ public class MemberDAO {
 				vo.setName(rs.getString("name"));
 				vo.setBirth(rs.getString("birth"));
 				vo.setTel(rs.getString("tel"));
+				vo.setAddress(rs.getString("address"));
 				vo.setEmail(rs.getString("email"));
 				vo.setRegDate(rs.getString("regDate"));
 				vo.setConDate(rs.getString("conDate"));
@@ -172,8 +174,8 @@ public class MemberDAO {
 			// 1.2.
 			con = DB.getConnection();
 			// 3. sql 작성
-			String sql = " INSERT INTO member(id, pw, name, birth, tel, email, photo) "
-					+ " VALUES(?, ?, ?, ?, ?, "
+			String sql = " INSERT INTO member(id, pw, name, birth, tel, address, email, photo) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, "
 					+ " ?, ?) ";
 			// 4. 실행객체 및 데이터 세팅
 			pstmt = con.prepareStatement(sql);
@@ -183,8 +185,9 @@ public class MemberDAO {
 			pstmt.setString(3, vo.getName());
 			pstmt.setString(4, vo.getBirth());
 			pstmt.setString(5, vo.getTel());
-			pstmt.setString(6, vo.getEmail());
-			pstmt.setString(7, vo.getPhoto());
+			pstmt.setString(6, vo.getAddress());
+			pstmt.setString(7, vo.getEmail());
+			pstmt.setString(8, vo.getPhoto());
 			
 			// 5. 실행
 			result = pstmt.executeUpdate();
@@ -210,22 +213,25 @@ public class MemberDAO {
 	public int update(MemberVO vo) throws Exception {
 		int result = 0;
 		
+		System.out.println("memberDAO.update vo >> " + vo);
+		
 		try {
 			
 			con = DB.getConnection();
 			
 			String sql = " UPDATE member "
 					+ " SET name = ?, birth = ?, "
-					+ " tel = ?, email = ? "
+					+ " tel = ?, address = ?, email = ? "
 					+ " WHERE id = ? AND pw = ? ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getBirth());
 			pstmt.setString(3, vo.getTel());
-			pstmt.setString(4, vo.getEmail());
-			pstmt.setString(5, vo.getId());
-			pstmt.setString(6, vo.getPw());
+			pstmt.setString(4, vo.getAddress());
+			pstmt.setString(5, vo.getEmail());
+			pstmt.setString(6, vo.getId());
+			pstmt.setString(7, vo.getPw());
 			
 			// result 가 1이면 - 수정완료, result 가 0이면 : 아이디나 비밀번호가 틀림.
 			result = pstmt.executeUpdate();
