@@ -22,6 +22,25 @@ request.setAttribute("vo", vo);
 <head>
 <meta charset="UTF-8">
 <title>상품 수정</title>
+<script type="text/javascript" src="/js/formUtil.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	
+	// form 태그에 submit 이벤트 발생했을경우 처리
+	$("#updateForm").submit(function(){
+	
+	// 상품명은 2~30자 까지
+	if(!lengthCheck("#pname", "상품명", 2, 30)) return false;
+	// 가격은 2~9자까지 (1원 ~ 999,999,999원)
+	if(!lengthCheck("#price", "가격", 1, 9)) return false;
+	// 수량은 2~9자까지 (1개 ~ 999,999,999개)
+	if(!lengthCheck("#unit", "수량", 1, 9)) return false;
+
+	});
+});
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -32,19 +51,25 @@ request.setAttribute("vo", vo);
 				<label for="pname" class="control-label col-sm-2">상품명</label>
 				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="pname"
-						maxlength="100" id="pname" value="${vo.pname }" /> <input
-						type="hidden" name="pno" value="${vo.pno }" /> <input
-						type="hidden" name="oldContent" value="${vo.content }" /> <input
-						type="hidden" name="oldImage" value="${vo.image }" />
+					<input type="text" class="form-control" name="pname" id="pname" 
+					value="${vo.pname }" />
+					<input type="hidden" name="pno" value="${vo.pno }" />
+					<input type="hidden" name="oldContent" value="${vo.content }" />
+					<input type="hidden" name="oldImage" value="${vo.image }" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="price" class="control-label col-sm-2">가격</label>
 				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="price"
-						maxlength="100" id="price" value="${vo.price }" />
+					<input type="text" class="form-control" name="price" id="price" value="${vo.price }" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="unit" class="control-label col-sm-2">수량</label>
+				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
+				<div class="col-sm-10">
+					<input type="text" name="unit" id="unit" class="form-control" value="${vo.unit }" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -93,14 +118,6 @@ request.setAttribute("vo", vo);
 							</optgroup>
 						</select>
 					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="unit" class="control-label col-sm-2">수량</label>
-				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-				<div class="col-sm-10">
-					<input type="text" name="unit" id="unit" class="form-control"
-						maxlength="10" value="${vo.unit }" />
 				</div>
 			</div>
 			<div class="form-group">

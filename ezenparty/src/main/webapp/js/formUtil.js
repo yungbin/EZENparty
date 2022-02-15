@@ -1,8 +1,3 @@
-/**
- * 게시판류 입력 폼의 데이터 처리를 위한 JS
- */
-
-//alert("formUtil.js setting");
 
 // 데이터의 패턴 정규 표현식 객체 선언
 	// 전화번호 패턴 검사 -> JS 정규 표현식
@@ -41,8 +36,6 @@ function emptyCheck(objStr, itemName) {
 		$(objStr).focus();
 		return true; // 데이터가 비어 있으면 true가 리턴된다.
 	}
-	
-	alert($(objStr).val());
 	return false;
 }
 

@@ -14,11 +14,11 @@ $(function(){
 	$("#writeForm").submit(function(){
 	
 	// 상품명은 2~30자 까지
-	if(lengthCheck("#pname", "상품명", 2, 30)) return false;
-	// 가격은 2~10자까지 (10원 ~ 999,999,999원)
-	if(lengthCheck("#price", "가격", 2, 9)) return false;
-	// 수량은 2~10자까지 (10개 ~ 999,999,999개)
-	if(lengthCheck("#unit", "수량", 2, 9)) return false;
+	if(!lengthCheck("#pname", "상품명", 2, 30)) return false;
+	// 가격은 2~9자까지 (1원 ~ 999,999,999원)
+	if(!lengthCheck("#price", "가격", 1, 9)) return false;
+	// 수량은 2~9자까지 (1개 ~ 999,999,999개)
+	if(!lengthCheck("#unit", "수량", 1, 9)) return false;
 
 	});
 });
@@ -34,24 +34,21 @@ $(function(){
 				<label for="pname" class="control-label col-sm-2">상품명</label>
 				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="pname"
-						maxlength="100" id="pname" />
+					<input type="text" class="form-control" name="pname" id="pname" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="price" class="control-label col-sm-2">가격</label>
 				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="price"
-						maxlength="100" id="price" />
+					<input type="text" class="form-control" name="price" id="price" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="unit" class="control-label col-sm-2">수량</label>
 				<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 				<div class="col-sm-10">
-					<input type="text" name="unit" id="unit" class="form-control"
-						maxlength="10" />
+					<input type="text" name="unit" id="unit" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -85,13 +82,13 @@ $(function(){
 			<div class="form-group">
 				<label for="content" class="control-label col-sm-2">내용 이미지</label>
 				<div class="col-sm-10">
-					<input name="content" type="file" id="content">
+					<input name="content" type="file" id="content" required="required">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="image" class="control-label col-sm-2">이미지 파일</label>
 				<div class="col-sm-10">
-					<input name="image" type="file" id="image">
+					<input name="image" type="file" id="image" required="required">
 				</div>
 			</div>
 			<div class="text-center">
