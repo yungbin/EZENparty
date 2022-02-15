@@ -19,7 +19,7 @@ String strPrice = multi.getParameter("price");
 long price = Long.parseLong(strPrice);
 
 String strUnit = multi.getParameter("unit");
-int unit = Integer.parseInt(strUnit);
+long unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
 String categories = multi.getParameter("categories");
 

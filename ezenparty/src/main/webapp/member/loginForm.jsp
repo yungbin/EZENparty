@@ -131,7 +131,7 @@
         <label>
         <!-- <span>PW</span> -->
         <p style="text-align: left; font-size:12px; color:#666;">Password</p>
-        <input type="text" name = "pw" placeholder="비밀번호를 입력" class="size">
+        <input type="Password" name = "pw" placeholder="비밀번호를 입력" class="size">
         <!-- <input type="submit" value="확인"> -->
         </label>
 

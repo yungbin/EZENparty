@@ -6,18 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항&#38;이벤트 등록</title>
+<%-- 브라우저가 자바스크립트를 인식하게 하기 위해 --%>
 <script type="text/javascript" src="/js/formUtil.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 <script type="text/javascript">
 $(function() {
 	//폼 데이터 넘기기 전에 데이터 검사
 	$("#writeForm").submit(function() {
 //	alert("데이터 검사");
+	if(lengthCheck("#title", "제목", 4, 100));
+	if(lengthCheck("#content", "내용", 4, 2000));
 	
 	//필수 입력 데이터 검사
 		if(emptyCheck("#title", "제목")) return false;
 		if(emptyCheck("#content", "내용")) return false;
+		if(emptyCheck("#startDate", "시작일")) return false;
+		if(emptyCheck("#endDate", "종료일")) return false;
 	
 	});
+	
+		$("#startDate").datepicker({
+		       changeMonth: true,
+		       changeYear: true,
+		       dateFormat: "yy-mm-dd",
+		       minDate: 0,
+		       onClose: function( selectedDate ) {
+		           $( "#endDate" ).datepicker( "option", "minDate", selectedDate );
+		       }
+		 });
+		 
+		 $("#endDate").datepicker({
+		  changeMonth: true,
+		  changeYear: true,
+		  dateFormat: "yy-mm-dd",
+		     minDate: 0,
+		     onClose: function( selectedDate ) {
+		         $( "#startDate" ).datepicker( "option", "maxDate", selectedDate );
+		       }
+		 });
 });
 </script>
 </head>

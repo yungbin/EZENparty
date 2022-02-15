@@ -54,7 +54,6 @@ request.setAttribute("pageObject", pageObject);
 			<th>이름</th>
 			<th>생년월일</th>
 			<th>전화번호</th>
-			<th>주소</th>
 			<th>권한번호</th>
 			<th>권한이름</th>
 			<th>최종접속</th>

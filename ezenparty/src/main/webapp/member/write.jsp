@@ -27,10 +27,10 @@ String address = multi.getParameter("address");
 String email = multi.getParameter("email");
 String photo = multi.getFilesystemName("photo");
 // 확인용
-//System.out.println("[write.jsp] photo - " + photo);
+System.out.println("[write.jsp] photo - " + photo);
 
 //사진이 안들어오면 NoImage.jpg로 기본 세팅한다.
-if(photo == null || photo.equals("")) photo = "noImage.jpg";
+if(photo == null || photo.equals("")) photo = "noimage.jpg";
 // 확인용
 //System.out.println("[write.jsp] photo - " + photo);
 
@@ -46,7 +46,7 @@ vo.setEmail(email);
 vo.setPhoto(path + photo);
 
 //확인용
-//System.out.println("회원가입 vo - " + vo);
+System.out.println("회원가입 vo - " + vo);
 
 //MemberWriteService -> MemberDAO.write
 MemberWriteService service = new MemberWriteService();

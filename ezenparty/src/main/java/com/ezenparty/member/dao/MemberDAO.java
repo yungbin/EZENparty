@@ -123,7 +123,7 @@ public class MemberDAO {
 			
 			con = DB.getConnection();
 			
-			String sql = " SELECT m.id, m.name, m.birth, m.tel, m.address, m. email, m.regDate, "
+			String sql = " SELECT m.id, m.name, to_char(m.birth, 'yyyy-mm-dd') birth, m.tel, m.address, m. email, m.regDate, "
 					+ " m.conDate, m.status, m.photo, m.gradeNo, g.gradeName "
 					+ " FROM member m, grade g "
 					+ " WHERE (id = ?) AND (m.gradeNo = g.gradeNo) ";
@@ -175,8 +175,7 @@ public class MemberDAO {
 			con = DB.getConnection();
 			// 3. sql 작성
 			String sql = " INSERT INTO member(id, pw, name, birth, tel, address, email, photo) "
-					+ " VALUES(?, ?, ?, ?, ?, ?, "
-					+ " ?, ?) ";
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?) ";
 			// 4. 실행객체 및 데이터 세팅
 			pstmt = con.prepareStatement(sql);
 			
@@ -223,7 +222,7 @@ public class MemberDAO {
 					+ " SET name = ?, birth = ?, "
 					+ " tel = ?, address = ?, email = ? "
 					+ " WHERE id = ? AND pw = ? ";
-			
+			System.out.println("updae.sql >>>> " + sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getBirth());
@@ -339,14 +338,14 @@ public class MemberDAO {
 
 	public int change(MemberVO vo) throws Exception{
 		int result = 0;
-		
+		System.out.println("memberdao.change >> " + vo);
 		try {
 
 			con = DB.getConnection();
 
 			String sql = " update member set photo = ? "
 					+ " where id = ? ";
-
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPhoto());
 			pstmt.setString(2, vo.getId());

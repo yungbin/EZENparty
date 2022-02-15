@@ -4,8 +4,7 @@ public class ProductVO {
 	
 	private long pno;
 	private String pname;
-	private long price;
-	private int unit;
+	private long price, unit;
 	private String image, content, writeDate, pkind, categories;
 	
 	public long getPno() {
@@ -19,12 +18,6 @@ public class ProductVO {
 	}
 	public void setPname(String pname) {
 		this.pname = pname;
-	}
-	public int getUnit() {
-		return unit;
-	}
-	public void setUnit(int unit) {
-		this.unit = unit;
 	}
 	public String getImage() {
 		return image;
@@ -61,6 +54,12 @@ public class ProductVO {
 	}
 	public void setCategories(String categories) {
 		this.categories = categories;
+	}
+	public long getUnit() {
+		return unit;
+	}
+	public void setUnit(long unit) {
+		this.unit = unit;
 	}
 	@Override
 	public String toString() {

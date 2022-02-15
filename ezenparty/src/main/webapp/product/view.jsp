@@ -35,34 +35,66 @@ $(function() {
 		max : 100,
 		step : 1
 	});
-// 	ui-spinner-up 증가 화살표
-// 	ui-spinner-down 감소 화살표
+	// 	ui-spinner-up 증가 화살표
+	// 	ui-spinner-down 감소 화살표
 
+	// 화살표를 눌러 증가시킬시 이벤트 처리
 	$(".ui-spinner-up").on("click", function(){
 		// 확인용
 		//alert("하하" + Number($("#spinner").val()));
-		var price = parseInt($("#priceSpan").text());
-		var up = parseInt($("#spinner").val());
 		
+		// vo.price 값의 텍스트를 가져와 정수형으로 만들고 저장.
+		var price = parseInt($("#priceSpan").text());
+		// spinner의 값(수량)을 가져와 정수형으로 만들고 저장
+		var up = parseInt($("#spinner").val());
+		// total 변수에 상품가격과 현재수량을 곱한값을 저장.
 		var total = price * up;
 		
 		// 확인용
 		//alert(price + "*" + up + "=" + total);
+		
+		// 총 상품금액에 total 값을 콤마를 찍은 상태(addComma)로 포맷시킨뒤 세팅.
 		$("#totalPrice").text(addComma(String(total)));
 	});
+	
+	// 화살표를 눌러 감소시킬시 이벤트 처리
 	$(".ui-spinner-down").on("click", function(){
 		// 확인용
 		//alert("하하" + Number($("#spinner").val()));
-		var price = parseInt($("#priceSpan").text());
-		var up = parseInt($("#spinner").val());
 		
+		// vo.price 값의 텍스트를 가져와 정수형으로 만들고 저장.
+		var price = parseInt($("#priceSpan").text());
+		// spinner의 값(수량)을 가져와 정수형으로 만들고 저장
+		var up = parseInt($("#spinner").val());
+		// total 변수에 상품가격과 현재수량을 곱한값을 저장.
 		var total = price * up;
 		
 		// 확인용
 		//alert(price + "*" + up + "=" + total);
+		
+		// 총 상품금액에 total 값을 콤마를 찍은 상태(addComma)로 포맷시킨뒤 세팅.
 		$("#totalPrice").text(addComma(String(total)));
 
 	});
+	
+	// spinner에 값이 변동될 경우의 이벤트 처리
+	$("#spinner").change(function(){
+		
+		// vo.price 값의 텍스트를 가져와 정수형으로 만들고 저장.
+		var price = parseInt($("#priceSpan").text());
+		// spinner의 값(수량)을 가져와 정수형으로 만들고 저장
+		var up = parseInt($("#spinner").val());
+		// total 변수에 상품가격과 현재수량을 곱한값을 저장.
+		var total = price * up;
+		
+		// 확인용
+		//alert(price + "*" + up + "=" + total);
+		
+		// 총 상품금액에 total 값을 콤마를 찍은 상태(addComma)로 포맷시킨뒤 세팅.
+		$("#totalPrice").text(addComma(String(total)));
+		
+	});
+	
 });
 </script>
 <style type="text/css">

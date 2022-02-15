@@ -26,7 +26,7 @@ String strPrice = multi.getParameter("price");
 long price = Long.parseLong(strPrice);
 
 String strUnit = multi.getParameter("unit");
-int unit = Integer.parseInt(strUnit);
+long unit = Integer.parseInt(strUnit);
 String pkind = multi.getParameter("pkind");
 String categories = multi.getParameter("categories");
 
@@ -85,5 +85,5 @@ if(result > 0 && oldContentFile.exists() && cnts == 1) oldContentFile.delete();
 if(result > 0 && oldImageFile.exists() && cnti == 1) oldImageFile.delete();
 
 //확인용
-response.sendRedirect("view.jsp?pno=" + pno + "&inc=0");
+response.sendRedirect("view.jsp?pno=" + pno);
 %>

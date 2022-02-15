@@ -41,6 +41,8 @@ function emptyCheck(objStr, itemName) {
 		$(objStr).focus();
 		return true; // 데이터가 비어 있으면 true가 리턴된다.
 	}
+	
+	alert($(objStr).val());
 	return false;
 }
 

@@ -250,7 +250,7 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
 			pstmt.setLong(2, vo.getPrice());
-			pstmt.setInt(3, vo.getUnit());
+			pstmt.setLong(3, vo.getUnit());
 			pstmt.setString(4, vo.getImage());
 			pstmt.setString(5, vo.getContent());
 			pstmt.setString(6, vo.getPkind());
@@ -295,7 +295,7 @@ public class ProductDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
 			pstmt.setLong(2, vo.getPrice());
-			pstmt.setInt(3, vo.getUnit());
+			pstmt.setLong(3, vo.getUnit());
 			pstmt.setString(4, vo.getImage());
 			pstmt.setString(5, vo.getContent());
 			pstmt.setString(6, vo.getPkind());

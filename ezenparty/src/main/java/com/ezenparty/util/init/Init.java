@@ -48,11 +48,11 @@ public class Init extends HttpServlet {
 		
 		// 회원 관리 권한
 		// 9번 : 관리자, 1번 : 일반회원,
-		authorityMap.put("/member/list.jsp", 9);
-		authorityMap.put("/member/view.jsp", 1);
-		authorityMap.put("/member/updateForm.jsp", 1);
-		authorityMap.put("/member/update.jsp", 1);
-		authorityMap.put("/member/delete.jsp", 1);
+//		authorityMap.put("/member/list.jsp", 9);
+//		authorityMap.put("/member/view.jsp", 1);
+//		authorityMap.put("/member/updateForm.jsp", 1);
+//		authorityMap.put("/member/update.jsp", 1);
+//		authorityMap.put("/member/delete.jsp", 1);
 
 		// 공지사항 권한
 		authorityMap.put("/notice/writeForm.jsp", 9);

@@ -60,6 +60,12 @@ System.out.println("vo = " + vo);
 			value="<%= vo.getTel()%>"/></td>
 		</tr>
 		<tr>
+			<th>주소</th>
+			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
+			<td><input type="text" name="address" maxlength="13" placeholder="예)경기도 의정부시"
+			value="<%= vo.getAddress()%>"/></td>
+		</tr>
+		<tr>
 			<th>이메일</th>
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
 			<td><input type="text" name="email" maxlength="50" placeholder="예)test@naver.com"

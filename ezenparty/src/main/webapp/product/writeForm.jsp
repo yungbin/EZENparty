@@ -5,6 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
+<script type="text/javascript" src="/js/formUtil.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	
+	// form 태그에 submit 이벤트 발생했을경우 처리
+	$("#writeForm").submit(function(){
+	
+	// 상품명은 2~30자 까지
+	if(lengthCheck("#pname", "상품명", 2, 30)) return false;
+	// 가격은 2~10자까지 (10원 ~ 999,999,999원)
+	if(lengthCheck("#price", "가격", 2, 9)) return false;
+	// 수량은 2~10자까지 (10개 ~ 999,999,999개)
+	if(lengthCheck("#unit", "수량", 2, 9)) return false;
+
+	});
+});
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -66,13 +85,13 @@
 			<div class="form-group">
 				<label for="content" class="control-label col-sm-2">내용 이미지</label>
 				<div class="col-sm-10">
-					<input name="content" type="file">
+					<input name="content" type="file" id="content">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="image" class="control-label col-sm-2">이미지 파일</label>
 				<div class="col-sm-10">
-					<input name="image" type="file">
+					<input name="image" type="file" id="image">
 				</div>
 			</div>
 			<div class="text-center">

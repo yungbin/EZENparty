@@ -13,18 +13,19 @@
 // DB 클래스 확인
 Class.forName("com.ezenparty.util.db.DB");
 
-// 페이지 정보 수집
+// 페이지 정보받기(수집)
 PageObject pageObject = PageObject.getInstance(request);
 
 // 데이터 수집
 // now - 현재 공지, old - 지난 공지, res - 예약 공지, all - 전체 공지 -> pt(point)
 // pt = pageObject.period
+//notice가 기본적으로 보이게 한다
 String pt = request.getParameter("pt");
 if(pt == null) pt = "notice"; // 기본 값 세팅 : 현재 공지
 
 pageObject.setPeriod(pt);
 
-// DB에서 데이터 가져오기 - 생성, 호출
+// DB에서 데이터 가져오기 - 서비스 객체 생성, 호출하여 리스트 셋팅
 NoticeListService service = new NoticeListService();
 List<NoticeVO> list = service.service(pageObject);
 
@@ -40,7 +41,7 @@ request.setAttribute("list", list);
 request.setAttribute("pt", pt);
 request.setAttribute("style", style);
 
-// 페이지정보를 request에 담는다.
+// 저장객체에 pageObject 셋팅
 request.setAttribute("pageObject", pageObject);
 %>
 
@@ -73,7 +74,10 @@ th {
 		<h2>공지사항&#38;이벤트</h2>
 		<a href="list.jsp?pt=notice" class="btn btn-default" style='${(pt == "notice")?style:""}'>공지사항</a>
 		<a href="list.jsp?pt=event" class="btn btn-default" style='${(pt == "event")?style:""}'>이벤트</a>
+		<!-- 관리자만 볼 수 있는 카테고리 -->
+		<c:if test="${!empty login && 9 == login.getGradeNo()}">
 		<a href="list.jsp?pt=resEvent" class="btn btn-default" style='${(pt == "resEvent")?style:""}'>예약 이벤트</a>
+		</c:if>
 		<table class="table">
 			<tr>
 				<th>번호</th>
@@ -110,13 +114,12 @@ th {
 					</td>
 				</tr>
 			</c:if>
-			<%-- 	<% if(loginVO != null && loginVO.getGradeNo() == 9) {%> --%>
-			<%--<c:if test="${!empty login && 9 == login.getGradeNo()}">--%>
+			<c:if test="${!empty login && 9 == login.getGradeNo()}">
 			<tr>
 				<td colspan="5" style="text-align: center;"><a
 					href="writeForm.jsp" class="btn btn-default">글등록</a></td>
 			</tr>
-			<%--</c:if>--%>
+			</c:if>
 		</table>
 	</div>
 </body>

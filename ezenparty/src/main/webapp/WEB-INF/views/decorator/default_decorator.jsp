@@ -90,7 +90,7 @@ article {
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Logo</a>
+					<a class="navbar-brand" href="/main/main.jsp">이젠파티</a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
@@ -120,7 +120,7 @@ article {
 			      <li><a href="/member/writeForm.jsp">회원가입</a></li>
 			      <li><a href="/member/loginForm.jsp">로그인</a></li>
 			      	<% } else { %>
-			      <li><a href="/member/view.jsp">
+			      <li><a href="/member/view.jsp?id=<%= loginVO.getId()%>">
 			      <%= loginVO.getName() %> (<%= loginVO.getGradeName() %>)
 			      	</a></li>
 			      <li><a href="/member/logout.jsp">로그아웃</a></li>

@@ -5,16 +5,14 @@
     pageEncoding="UTF-8"%>
 <%
 // 여기는 자바입니다.
-// 한글 처리
 request.setCharacterEncoding("utf-8");
-
-// 데이터 수집 - 넘어오는 데이터 받기 : 아이디, 비밀번호, 이름, 성별, 생년월일, 전화번호, 이메일
+// 데이터 수집 - 넘어오는 데이터 받기 : 아이디, 비밀번호, 이름, 생년월일, 전화번호, 주소, 이메일
 String id = request.getParameter("id");
 String pw = request.getParameter("pw");
 String name = request.getParameter("name");
-String gender = request.getParameter("gender");
 String birth = request.getParameter("birth");
 String tel = request.getParameter("tel");
+String address = request.getParameter("address");
 String email = request.getParameter("email");
 
 // Controller -> Service -> DAO : MemberVO 객체를 만들어서 전달한다.
@@ -24,6 +22,7 @@ vo.setPw(pw);
 vo.setName(name);
 vo.setBirth(birth);
 vo.setTel(tel);
+vo.setAddress(address);
 vo.setEmail(email);
 
 System.out.println("회원정보 수정 처리 - vo : " + vo);

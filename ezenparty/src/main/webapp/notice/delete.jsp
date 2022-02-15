@@ -15,13 +15,3 @@ int result = service.service(no);
 response.sendRedirect("list.jsp");
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>글삭제</title>
-</head>
-<body>
-<h2>글삭제</h2>
-</body>
-</html>

@@ -118,20 +118,11 @@ body {
 <script type="text/javascript" src="/js/formUtil.js"></script>
 <script type="text/javascript">
 $(function(){
-	// 아이디 -> 비어있으면 경고>포커스>이동막기
-	if(emptyCheck("#id", "이름")) return false; 
-	// 비밀번호 -> 비어있으면 경고>포커스>이동막기
-	if(emptyCheck("#pw", "비밀번호")) return false;
-	// 비밀번호 확인 -> 비어있으면 경고>포커스>이동막기
-	if(emptyCheck("#pw2", "비밀번호")) return false;
-	// 이름 -> 비어있으면 경고>포커스>이동막기
-	if(emptyCheck("#name", "이름")) return false;
-	// 주소 -> 비어있으면 경고>포커스>이동막기
-	if(emptyCheck("#address", "주소")) return false;
+	
 	// 생년월일 10자리가 차면 연락 처리로 넘어간다.
 	$("#birth").keyup(function(){ autoNext("#birth", "#tel", 10);})
 	// 연락처 13자리가 차면 연락 처리로 넘어간다.
-	$("#tel").keyup(function(){ autoNext("#tel", "#email", 13);})
+	$("#tel").keyup(function(){ autoNext("#tel", "#address", 13);})
 	
 	$("#pwMsg").css("color","red");
 	$("#pw2Msg").css("color","red");
@@ -237,7 +228,7 @@ $(function(){
 		</div>
 		<div class="textForm">
 			<!--input 데이터 입력, type : 입력형태, name : 전달 이름, maxlength : 최대 입력-->
-			<input type="text" name="photo" maxlength="50" id="photo" placeholder="프로필 선택(필수X)" class="form-control" disabled/><input type="file"></input>
+			<input type="text" maxlength="50" placeholder="프로필 선택(필수X)" class="form-control" disabled/><input name="photo" type="file"></input>
 			</div>
 			<div class="textForm">
 				<!-- button이 form tag 안에 있으면 데이터를 전달하는 동작을 하게 된다. -->

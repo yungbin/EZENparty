@@ -29,8 +29,12 @@ int result = service.service(vo);
 File oldFile = new File(request.getServletContext().getRealPath(oldImage));
 // // 자동으로 list로 보낸다.
 if(result > 0 && oldFile.exists()) {
+	// 임시
 	oldFile.delete();
 	response.sendRedirect("list.jsp");
 }
-else out.println("삭제 오류 - 입력하신 정보를 확인해주세요.");
+else{
+	out.println("삭제 오류 - 입력하신 정보를 확인해주세요.");
+	System.out.println("delete.jsp result, exists >>>" + result + "/" + oldFile.exists());
+}
 %>

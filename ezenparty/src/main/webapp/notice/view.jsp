@@ -6,7 +6,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 
 <%// 자바
-// DB에서 데이터를 꺼내온다. 글번호가 넘어온다.
+// DB에서 데이터를 꺼내온다
+//글번호가 넘겨와서 셋팅
 String strNo = request.getParameter("no");
 long no = Long.parseLong(strNo);
 
@@ -68,14 +69,13 @@ request.setAttribute("vo", vo);
 	</tr>
 	<tr>
 		<td colspan="2">
-<%-- 		<% if (loginVO != null && loginVO.getGradeNo() == 9) { %> --%>
 
-<%-- 	<c:if test="${!empty login && login.getGradeNo() == 9}"> --%>
+		<c:if test="${!empty login && login.getGradeNo() == 9}">
 
 		<a href="updateForm.jsp?no=${vo.no}" class="btn btn-default">수정</a>
 		<a href="delete.jsp?no=${vo.no}" class="btn btn-default">삭제</a>
 
-<%--	</c:if> --%>
+		</c:if>
 
 		<a href="list.jsp?pt=notice&page=1&perPageNum=10" class="btn btn-default">리스트</a>
 		</td>
