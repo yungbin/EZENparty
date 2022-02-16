@@ -1,3 +1,4 @@
+<%@page import="com.ezenparty.member.vo.LoginVO"%>
 <%@page import="com.ezenparty.notice.vo.NoticeVO"%>
 <%@page import="com.ezenparty.notice.service.NoticeViewService"%>
 <%@page import="com.ezenparty.product.vo.ProductVO"%>
@@ -12,9 +13,13 @@
 String strPno = request.getParameter("pno");
 long pno = Long.parseLong(strPno);
 
+// view service 객체 생성및 호출
 ProductViewService service = new ProductViewService();
+// ProductVO  세팅
 ProductVO vo = service.service(pno);
-
+// 권한처리를 위한 login session 세팅
+LoginVO loginVO = (LoginVO)session.getAttribute("login");
+// vo 데이터를 EL객체로 만듦.
 request.setAttribute("vo", vo);
 %>
 <!DOCTYPE html>
@@ -78,6 +83,7 @@ $(function() {
 	});
 	
 	// spinner에 값이 변동될 경우의 이벤트 처리
+	// spinner의 화살표를 이용하지않고 값을 직접 입력할 경우를 대비한 함수
 	$("#spinner").change(function(){
 		
 		// vo.price 값의 텍스트를 가져와 정수형으로 만들고 저장.
@@ -92,6 +98,16 @@ $(function() {
 		
 		// 총 상품금액에 total 값을 콤마를 찍은 상태(addComma)로 포맷시킨뒤 세팅.
 		$("#totalPrice").text(addComma(String(total)));
+		
+	});
+	
+	$(".btnDelete").click(function(){
+		
+		if(confirm("정말 삭제하시겠습니까?")){
+			location="delete.jsp?pno=${vo.pno }&oldImage=${vo.image}&oldContent=${vo.content}";
+		}else{
+			return false;
+		}
 		
 	});
 	
@@ -151,6 +167,7 @@ $(function() {
 						<fmt:formatNumber value="${vo.price }" type="number" var="numberType" />
 						<!-- 포맷한 변수를 출력한다. 정상적으로 표시된다. -->
 						<span class="spanDataRow">${numberType}</span>
+						<!-- jquery에서 포맷전의 상품가격을 받기위해 display none으로 잡아서 선언하였다. -->
 						<span id="priceSpan" style="display: none;">${vo.price}</span>
 						</li>
 					<li class="list-group-item"><strong class="strHead">등록일</strong>
@@ -183,7 +200,8 @@ $(function() {
 			</div>
 		</div>
 		<hr>
-		<form action="/cart/list.jsp" method="post" class="form-horizontal">
+		<!-- 장바구니 개발중.-->
+		<form action="/cart/write.jsp" method="post" class="form-horizontal">
 			<div class="row">
 				<div class="form-group">
 					<!-- 수량에 따른 계산 부분 -->
@@ -192,35 +210,49 @@ $(function() {
 						<!-- float을 이용하여 레이아웃을 잡는다. -->
 						<div class="panel panel-default" style="width:50%; float: right;">
 							<div class="panel-heading">
+							<!-- spinner의 label태그 -->
 								<label for="spinner" class="control-label"
 									style="text-align: center; font-size: 20px; padding: 4px;">수량</label>
+								<!-- spinner input 태그 처음 보여지는 기본값을 1로 설정 -->
 								<input id="spinner" name="unit" value="1">
 							</div>
 							<div class="panel-body"><span>총 상품금액 : </span>
+							<!-- 장바구니에 상품 가격을 hidden으로 넘긴다. -->
+							<input type="hidden" name="price" value="${vo.price }">
 							<fmt:formatNumber value="${vo.price }" type="number" var="total" />
 							<strong id="totalPrice">${total }</strong></div>
+							<!-- 장바구니에 상품명을 hidden으로 넘긴다. -->
+							<input type="hidden" name="pname" value="${vo.pname }">
+							<!-- 장바구니에 상품이미지를 hidden으로 넘긴다. -->
+							<input type="hidden" name="image" value="${vo.image }">
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-7"></div>
 					<div class="col-sm-1"></div>
-					<div class="col-sm-4" id="publicBtn" style="margin: 30px 0; text-align: center;">
+					<div class="col-sm-4" id="publicBtn" style="margin: 30px 0; text-align: right;">
+						<!-- 개발중 -->
 						<button class="btn btn-default btn-lg">장바구니</button>
-						<button class="btn btn-default btn-lg">구매</button>
+						<!-- 개발중 -->
+						<button class="btn btn-default btn-lg" type="button" onclick="alert('구매완료')">구매</button>
 					</div>
 				</div>
 			</div>
 		</form>
 		<div>
-			<a href="updateForm.jsp?pno=${vo.pno }"
-			class="btn btn-default btn-lg">글 수정</a>
-			<a href="delete.jsp?pno=${vo.pno }&oldImage=${vo.image}&oldContent=${vo.content}"
-			class="btn btn-default btn-lg">글 삭제</a> 
+			<!-- 관리자만 보일수 있도록 조건을 설정. -->
+			<c:if test="${!empty login && 9 == login.getGradeNo()}">
+				<a href="updateForm.jsp?pno=${vo.pno }"
+				class="btn btn-default btn-lg">글 수정</a>
+				<a class="btn btn-default btn-lg btnDelete">글 삭제</a>
+			</c:if>
+			<!-- 리스트는 누구나 볼 수 있어야한다. -->
 			<a href="list.jsp?page=${param.page }&perPageNum=${param.perPageNum }
 			&kind=${param.kind}&categories=${param.categories}"class="btn btn-default btn-lg">리스트</a>
 		</div>
 		<hr>
+		<!-- 상품 설명 -->
 		<div class="row productInfo">
 			<div class="contentDiv">
 				<img src="${vo.content }">

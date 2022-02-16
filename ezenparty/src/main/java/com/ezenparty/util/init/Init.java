@@ -48,11 +48,11 @@ public class Init extends HttpServlet {
 		
 		// 회원 관리 권한
 		// 9번 : 관리자, 1번 : 일반회원,
-//		authorityMap.put("/member/list.jsp", 9);
-//		authorityMap.put("/member/view.jsp", 1);
-//		authorityMap.put("/member/updateForm.jsp", 1);
-//		authorityMap.put("/member/update.jsp", 1);
-//		authorityMap.put("/member/delete.jsp", 1);
+		authorityMap.put("/member/list.jsp", 9);
+		authorityMap.put("/member/view.jsp", 1);
+		authorityMap.put("/member/updateForm.jsp", 1);
+		authorityMap.put("/member/update.jsp", 1);
+		authorityMap.put("/member/delete.jsp", 1);
 
 		// 공지사항 권한
 		authorityMap.put("/notice/writeForm.jsp", 9);
@@ -71,12 +71,15 @@ public class Init extends HttpServlet {
 		authorityMap.put("/qna/delete.jsp", 1);
 		
 		// 상품리스트 권한
-//		authorityMap.put("/product/writeForm.jsp", 9);
-//		authorityMap.put("/product/write.jsp", 9);
-//		authorityMap.put("/product/updateForm.jsp", 9);
-//		authorityMap.put("/product/update.jsp", 9);
-//		authorityMap.put("/product/delete.jsp", 9);
+		authorityMap.put("/product/writeForm.jsp", 9);
+		authorityMap.put("/product/write.jsp", 9);
+		authorityMap.put("/product/updateForm.jsp", 9);
+		authorityMap.put("/product/update.jsp", 9);
+		authorityMap.put("/product/delete.jsp", 9);
 		
+		// 상품리스트 권한
+		authorityMap.put("/cart/list.jsp", 1);
+
 	}
 
 }

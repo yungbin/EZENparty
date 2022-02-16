@@ -53,7 +53,7 @@ LoginVO loginVO = (LoginVO)session.getAttribute("login");
 <title>상품 리스트</title>
 <script type="text/javascript">
 $(function(){
-	
+	// 이미지 클릭시 이벤트 처리
 	$(".dataRow").click(function(){
 		var pno = $(this).find(".pno").text();
 		// 상품번호와 페이지정보(view에서 list로 올때 필요함.)를 넘긴다.
@@ -85,6 +85,7 @@ $(function(){
 <div class="container">
 <!-- 리스트 상단에 보이는 카테고리 영역 -->
 <div class="page-header">
+	<!-- 카테고리 링크들을 nav 태그안에서 처리 -->
 	<nav class="navbar navbar-default productNav">
 	<!-- 카테고리(대분류)에 따라 보여지는 컬럼들이 달라진다. -->
 	<c:choose>
@@ -146,11 +147,12 @@ $(function(){
 		<pageNav:pageNav listURI="list.jsp" pageObject="${pageObject }" query="&kind=${kind }&categories=${categories }"/>
 	</div>
 </div>
-<!-- 임시로 막아둠 -->
-<%-- <c:if test="${!empty login }"> --%>
-	<a href="writeForm.jsp" class="btn btn-default">등록</a>
-<%-- </c:if> --%>
-	<a href="list.jsp" class="btn btn-default">새로고침</a>
+<!-- 상품등록은 관리자만 볼 수 있다. -->
+<c:if test="${!empty login }">
+	<a href="writeForm.jsp" class="btn btn-default">상품등록</a>
+</c:if>
+	<!-- 새로고침 버튼은 누구나 볼 수 있다. -->
+	<a href="list.jsp?categories=${categories }&kind=${kind}" class="btn btn-default">새로고침</a>
 </div>
 </body>
 </html>
