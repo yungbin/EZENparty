@@ -85,5 +85,5 @@ if(result > 0 && oldContentFile.exists() && cnts == 1) oldContentFile.delete();
 if(result > 0 && oldImageFile.exists() && cnti == 1) oldImageFile.delete();
 
 //확인용
-response.sendRedirect("view.jsp?pno=" + pno);
+response.sendRedirect("view.jsp?pno=" + pno + "&kind=" + pkind + "&categories=" + categories);
 %>

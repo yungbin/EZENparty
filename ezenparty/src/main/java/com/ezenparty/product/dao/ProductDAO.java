@@ -29,7 +29,13 @@ public class ProductDAO {
 			// 3.
 			String sql = "select pno, pname, price , image "
 					+ " from product ";
-
+			// 대분류 //
+			// 풍선 : balloon, 코스프레의상 : cos
+			// 소분류 //
+			// 일반 풍선 : colorB, 숫자 풍선 : number B, 캐릭터 풍선 : charB
+			// 생일 풍선 : birthB
+			// 할로윈 의상 : halloween, 생일파티/반티 의상 : birthday
+			// 풍선 전체 : balloonAll, 코스프레의상 전체 : cosAll
 			switch (pageObject.getPeriod()) {
 			case "colorB":
 				sql += " where categories = 'balloon' and pkind = 'colorB' ";
@@ -123,6 +129,7 @@ public class ProductDAO {
 
 			String sql = "select count(*) from product";
 			
+			// 각 종류의 페이지마다 페이지수를 계산한다.
 			switch (pageObject.getPeriod()) {
 			case "colorB":
 				sql += " where categories = 'balloon' and pkind = 'colorB' ";
@@ -203,7 +210,8 @@ public class ProductDAO {
 			// 6.
 			if (rs != null && rs.next()) {
 				vo = new ProductVO();
-
+				
+				// vo에 값을 세팅한다.
 				vo.setPno(rs.getLong("pno"));
 				vo.setPname(rs.getString("pname"));
 				vo.setPrice(rs.getLong("price"));
@@ -246,7 +254,7 @@ public class ProductDAO {
 			String sql = "insert into product(pno, pname, price, unit, image, content, pkind, categories) "
 					+ " values(product_seq.nextval, ?, ?, ?, ?, ?, ?, ?) ";
 			System.out.println("ProductDAO.write().sql - " + sql);
-			// 4.
+			// 4. 각 타입에 맞게 데이터를 세팅한다.
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getPname());
 			pstmt.setLong(2, vo.getPrice());

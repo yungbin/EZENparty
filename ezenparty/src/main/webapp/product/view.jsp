@@ -241,6 +241,7 @@ $(function() {
 			</div>
 		</form>
 		<div>
+		
 			<!-- 관리자만 보일수 있도록 조건을 설정. -->
 			<c:if test="${!empty login && 9 == login.getGradeNo()}">
 				<a href="updateForm.jsp?pno=${vo.pno }"
