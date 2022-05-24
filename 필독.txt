@@ -1,0 +1,11 @@
+파티용품 쇼핑몰 사이트 [EZEN Party]
+
+역할분담
+
+권오윤 장바구니(cart), sitemesh >> 미구현 <<
+임재영 로그인(member, grade), main
+정지원 문의하기(qna), DB
+채연지 공지사항(notice), 한글필터
+임영빈 상품리스트(product), 권한 처리
+
+data 폴더에 각 팀원별 PPT와 정의서, 테이블 스키마 등이 있습니다.

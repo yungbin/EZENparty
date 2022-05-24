@@ -1,9 +1,0 @@
-팀별 개발 내용 정하기
-
-권오윤 장바구니(cart), sitemesh
-임재영 로그인(member, grade), main
-정지원 문의하기(qna), DB
-채연지 공지사항(notice), 한글필터
-임영빈 상품리스트(product), 권한 처리
-
-장바구니 미구현
